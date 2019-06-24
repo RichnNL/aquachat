@@ -1,0 +1,8 @@
+<div class="row available">
+        <div *ngIf="open" class="col-8">
+        <h1> {{available}} </h1>
+    </div>
+    <div [class.col-12]="open === false" [class.col-4]="open === true" class="img-container">
+            <span class="helper"></span> <img class="icon"  (click)="changeAvailable()"  src={{location}}  >
+    </div>
+</div>

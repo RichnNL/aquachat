@@ -9,5 +9,8 @@
         "logout": "Log Out",
         "home": "Home",
         "profile": "Profile"
+    },
+    "Dash": {
+        "noWorkspace": "You do not belong to any workspaces please select or join a workspace"
     }
 }

@@ -1,10 +1,7 @@
-<FlexboxLayout action-bar [Title]="'Aqua Chat'" >
-    <ListView [items]="channelList" (itemTap)="itemClicked($event)" >
-        <ng-template let-channel="item" let-i="index" let-odd="odd" let-even="even">
-            <StackLayout orientation="horizontal">
-                <Label [text]="channel"></Label>
-            </StackLayout>
-        </ng-template>
-    </ListView>
+<FlexboxLayout *ngIf="noWorkspaces" class="container" action-bar [Title]="workspacename" >
+    <Label class="h4" text="You have no workspaces"></Label>
+    <Button class="btn-main button" (tap)="showCreate()" text="Create Workspace"> </Button>
+
+    <Button class="btn-secondary button" (tap)="showJoin()" text="Join A Workspace"> </Button>
 </FlexboxLayout>
 

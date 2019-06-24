@@ -9,5 +9,8 @@
         "logout": "Afmelden",
         "home": "Home",
         "profile": "Profiel"
+    },
+    "Dash": {
+        "noWorkspace": "Uw hoort niet bij een Workspace"
     }
 }

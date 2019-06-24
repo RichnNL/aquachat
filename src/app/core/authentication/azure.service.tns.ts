@@ -28,8 +28,8 @@ export class AzureService {
             const token = new TokenModel();
             this.azureClientApplication.login(AuthenticationProvider.AzureActiveDirectory).then((user) => {
                  user.getProviderCredentials().then((result) => {
-                     console.log(result);
-                     const resultString = JSON.stringify(result.claims);
+                    console.log(result);
+                    const resultString = JSON.stringify(result.claims);
                     const logedInUser: UserModel = this.toUserModel(resultString);
                     if (logedInUser) {
                         this.storage.setObject('user', logedInUser);

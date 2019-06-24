@@ -171,32 +171,42 @@ $dark-dark: #0f0e0e;
     
     .btn-primary {
     background-color: $primary;
-    }
-    
-    .btn-primary {
     border-color: $primary;
-    }
-    
-    .btn-primary {
     color: $light-light;
     }
+
+    .btn-secondary {
+        -moz-box-shadow: 0px 10px 14px -7px $primary;
+        -webkit-box-shadow: 0px 10px 14px -7px $primary;
+        box-shadow: 0px 10px 14px -7px $primary;
+        background-color:$primary;
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 19px;
+        border-radius:19px;
+        border:1px solid $primary;
+        display:inline-block;
+        cursor:pointer;
+        font-family: 'museo300';
+        font-size: 21px;
+        width: 80%;
+        font-weight:bold;
+        padding: 13px 52px;
+        text-decoration:none;
+        text-shadow: 0px 1px 0px $primary;
+        background: $light-light;
+        text-align: center;
+        text-transform: uppercase;
+        color: $primary;
+    }
+    
     
     .btn-outline {
     border-color: #00318f;
-    }
-    
-    .btn-outline {
-    background-color: transparent;
-    }
-    
-    .btn-outline {
     border-width: 1;
-    }
-    
-    .btn-outline {
+    background-color: transparent;
     color: $primary;
     }
-    
+     
     .btn[isEnabled=false] {
     background-color: $secondary-light;
     }

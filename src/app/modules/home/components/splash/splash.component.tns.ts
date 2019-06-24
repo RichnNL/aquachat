@@ -9,7 +9,8 @@ import { LogInUser } from '../../../../shared/ngxs/actions/authentication.action
   templateUrl: './splash.component.html',
   styleUrls: ['./splash.component.scss'],
 })
-export class SplashComponent  {
+export class SplashComponent implements OnDestroy {
+   
     @Select(state => state.AuthenticationState.loggedIn) loggedIn$: Observable<boolean>;
     subscription: Subscription;
     exitMainPage = false;
@@ -23,6 +24,10 @@ export class SplashComponent  {
     }
     login() {
         this.store.dispatch(new LogInUser());
+    }
+
+    ngOnDestroy(): void {
+       this.subscription.unsubscribe();
     }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, OnDestroy, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { LogInUser, SetLoggedIn } from '../../../shared/ngxs/actions/authentication.action';
 import { RouterHelper } from '../../../shared/helpers/router/router.helper';
 import { UserModel } from '../../../shared/models/user.model';
@@ -15,14 +15,18 @@ import { AzureService } from '../../../core/authentication/azure.service';
     templateUrl: './navigation.component.html',
     styleUrls: ['./navigation.component.scss'],
   })
-  export class NavigationComponent  {
+  export class NavigationComponent implements OnDestroy {
+
     @Select(state => state.AuthenticationState.loggedIn) loggedIn$: Observable<boolean>;
     @Select(state => state.AuthenticationState.user) user$: Observable<UserModel>;
     sideNavOpen = false;
     sideIcon = '../../../../assets/icons/burgerNotSelected.svg';
     displayName = '';
+
+    userSubscription: Subscription;
+
     constructor(private store: Store, private router: RouterHelper, private azure: AzureService) {
-      this.user$.subscribe((result) => {
+     this.userSubscription = this.user$.subscribe((result) => {
         if (result.UserId) {
           if (result.DisplayName) {
             this.displayName = result.DisplayName;
@@ -35,7 +39,7 @@ import { AzureService } from '../../../core/authentication/azure.service';
         } else {
           this.displayName = '';
         }
-      })
+      });
     }
 
     toggleSideNav() {
@@ -61,6 +65,10 @@ import { AzureService } from '../../../core/authentication/azure.service';
 
     logoutClicked() {
       this.store.dispatch(new SetLoggedIn(false));
+    }
+
+    ngOnDestroy(): void {
+      this.userSubscription.unsubscribe();
     }
 
 }

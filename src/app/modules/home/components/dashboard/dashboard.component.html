@@ -1,8 +1,8 @@
-<!-- <div class="row">
+<div class="row">
   <div [class.col-3]="open === true" [class.col-1]="open === false" [class.closed]="open === false" class="sidemenu">
-    <app-sidemenu></app-sidemenu>
+    <app-sidemenu></app-sidemenu> 
   </div>
-  <div class="mainContent" [class.col-8]="open === true" [class.col-11]="open === false" >
+  <div *ngIf="!noWorkspaces" class="mainContent" [class.col-8]="open === true" [class.col-11]="open === false" >
     <div class="row">
       <app-chat-tool></app-chat-tool>
     </div>
@@ -13,5 +13,15 @@
       <app-chat-send></app-chat-send>
     </div>
   </div>
+
+  <div *ngIf="noWorkspaces" class="mainContent noworkspace" [class.col-7]="open === true" [class.col-10]="open === false">
+    <div class="row">
+      <div class="noworkspace">
+          <p>{{'Dash.noWorkspace' | translate}}</p>
+          <a class="aquadis_button_blue"> Select a Workspace</a>
+      </div>
+    
+    </div>
+  </div>
  
-</div> -->
+</div>

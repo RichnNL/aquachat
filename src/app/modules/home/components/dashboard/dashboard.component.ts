@@ -1,48 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AquachatAPIService } from '../../../../core/services/aquachatAPI.service';
 import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { TokenModel } from '../../../../shared/models/token.model';
-import { Workspace } from '../../../../core/models/WorkspaceModel';
+import { Observable, Subscription } from 'rxjs';
+import { WorkspaceDetailsModel } from '../../../../core/models/WorkspaceDetailsModel';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
-  @Select(state => state.AuthenticationState.id) id$: Observable<string>;
-  @Select(state => state.ChatState.myWorkspaces) workspaces$: Observable<Workspace[]>;
+export class DashboardComponent implements OnInit, OnDestroy {
+  @Select(state => state.ChatState.currentWorkspace) currentWorkspaces$: Observable<WorkspaceDetailsModel>;
   @Select(state => state.UIState.sideNavOpen) sideOpen$: Observable<boolean>;
-  channelList;
-  userID: string;
-  workspacename: string = '';
-  selectedUsers: string[] = [];
- workspaces: Workspace[];
- open = false;
-  constructor(private webAPIService: AquachatAPIService) {
-    this.id$.subscribe((result) => {
-      this.userID = result;
-    });
 
+  workspacename: string = '';
+  workspaceSubscription: Subscription;
+  open = false;
+  noWorkspaces = true;
+  constructor(private webAPIService: AquachatAPIService) {
     this.sideOpen$.subscribe((isOpen) => {
       this.open = isOpen;
     });
 
-    this.workspaces$.subscribe((result) => {
-      this.workspaces = result;
+   this.workspaceSubscription = this.currentWorkspaces$.subscribe((result) => {
+    if (result != null) {
+      if (result.Name.length > 0) {
+        this.workspacename = result.Name;
+      }
+
+      this.noWorkspaces = false;
+
+    }  else {
+      this.noWorkspaces = true;
+      this.workspacename = 'Select a Workspace';
+    }
     });
    }
 
+   showJoin() { }
 
+   showCreate() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-
-
-
-  itemClicked(item) {
-    // TODO
+  ngOnDestroy(): void {
+    this.workspaceSubscription.unsubscribe();
   }
-
 }

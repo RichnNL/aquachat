@@ -137,6 +137,8 @@ export class ChatStatusState implements NgxsOnInit {
 
         @Action(SetWorkspaceId)
         setWorkspaceId({getState, patchState}: StateContext<ChatStateModel>, {payload}: SetWorkspaceId) {
+            const chatGroupModel = new ChatGroupModel(payload, [], 'workspace');
+            this.storage.setObject('previousChat', chatGroupModel);
             patchState({
                 currentWorkspaceId: payload
             });
@@ -145,6 +147,8 @@ export class ChatStatusState implements NgxsOnInit {
 
         @Action(SetChannelId)
         setChannelId({getState, patchState}: StateContext<ChatStateModel>, {payload}: SetChannelId) {
+            const chatGroupModel = new ChatGroupModel(payload, [], 'channel');
+            this.storage.setObject('previousChat', chatGroupModel);
             patchState({
                 currentChannelId: payload
             });
@@ -153,6 +157,8 @@ export class ChatStatusState implements NgxsOnInit {
 
         @Action(SetChatId)
         setChatId({getState, patchState}: StateContext<ChatStateModel>, {payload}: SetChatId) {
+            const chatGroupModel = new ChatGroupModel(payload, [], 'direct');
+            this.storage.setObject('previousChat', chatGroupModel);
             patchState({
                 currentChatId: payload
             });

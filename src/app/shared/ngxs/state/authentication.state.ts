@@ -87,6 +87,8 @@ export class AuthenticationState implements NgxsOnInit {
                 const expirationLength = token.expirationDate.toString().length;
                 currentDate = Number.parseInt(currentDate.toString().substring(0,expirationLength));
                 if (currentDate > token.expirationDate) {
+                    console.log(currentDate);
+                    console.log(token.expirationDate);
                     console.log('Token is expired');
                     return false;
                 }

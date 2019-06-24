@@ -1,0 +1,44 @@
+<div class='container'>
+        <ul class='optionsList'>
+            <div class="top"  >
+                <li [class.topopen]="open === true" [class.topclosed]="open === false">
+                    <img class="icon"  (click)="toggleSideNav()"  src={{location}}  > 
+                </li>
+                <li>
+                    <app-profile></app-profile>
+                </li>
+            </div>
+        <li *ngIf="!open">
+            <app-chat-notification ></app-chat-notification>
+        </li>
+        <li>
+            <app-available></app-available>
+        </li>
+        <li class="hightlight">
+            <app-current-workspace></app-current-workspace>
+        </li>
+        <li *ngIf="expand && filteredWorkspaces.length > 0">
+                <mat-list>
+                        <h3 mat-subheader>Workspaces</h3>
+                        <mat-list-item *ngFor="let workspace of filteredWorkspaces"  >
+                          <button class="workspace" mat-icon-button (click)="selectedWorkspace(workspace)">
+                                <img matListAvatar src={{workspace.PictureLocation}} 
+                                onError="this.src='../../../../assets/media/placeholder.svg';"
+                                >
+                                {{workspace.Name}}
+                          </button>
+                        </mat-list-item>
+                        <mat-divider></mat-divider>
+                      </mat-list>
+        </li> 
+            <li *ngIf="open">
+                <mat-selection-list  #list class="bg-info" *ngFor="let other of users"  >
+                    <h3 mat-subheader>{{currentWorkspaceName}}</h3>
+                        <mat-list-option (click)="userSelected(other)" >
+                            {{other.Email[0]}}
+                        </mat-list-option>
+                </mat-selection-list>
+            </li>
+        </ul>
+</div>
+

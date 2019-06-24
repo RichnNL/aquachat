@@ -1,0 +1,16 @@
+    <div class="row">
+        <div *ngIf="open">
+            <img class="icon"  (click)="editProfile()"  src={{location}}  >
+        </div>
+        <div *ngIf="open">
+            
+        </div>
+    </div>
+    <div class="row title">
+        <div class="row">
+                {{name}}
+        </div>
+        <div *ngIf="open" class="row">
+                {{jobTitle}}
+        </div>
+    </div>

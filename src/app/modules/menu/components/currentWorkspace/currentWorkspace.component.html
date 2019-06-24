@@ -1,0 +1,18 @@
+<div *ngIf="open" class="row workspace">
+        <div *ngIf="hasWorkspaces" class="col-2">
+            <img class="icon"  (click)="editWorkspace()"  src='../../../../assets/media/edit.png'  >
+        </div>
+        
+        <div class="col-2">
+            <img class="icon"  (click)="addWorkspace()"  src='../../../../assets/media/plus.svg'  >
+        </div>
+        <div *ngIf="hasWorkspaces" class="col-6">
+            {{currentWorkspace.Name}}
+        </div>
+        <div *ngIf="!hasWorkspaces" class="col-8">
+            No Workspaces
+        </div>
+        <div *ngIf="hasWorkspaces && canExpand" class="col-2">
+                <img class="icon"  (click)="expandWorkspace()"  src={{location}}  >
+        </div>
+</div>
