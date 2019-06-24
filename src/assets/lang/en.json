@@ -1,0 +1,13 @@
+{
+    "Home": {
+        "title": "Hello World",
+        "text": "This is a hello world project",
+        "greeting": "Hello {{name}}!"
+    },
+    "Nav": {
+        "login": "Log In",
+        "logout": "Log Out",
+        "home": "Home",
+        "profile": "Profile"
+    }
+}

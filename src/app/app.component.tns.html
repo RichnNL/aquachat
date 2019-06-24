@@ -1,1 +1,11 @@
-  <page-router-outlet></page-router-outlet>
+<RadSideDrawer >
+  <FlexboxLayout tkDrawerContent class="sidedrawer-content flex-side">
+      <Button text="Profile" class="btn-primary" >
+      </Button>
+      <Button text="Logout" class="btn-primary" (tap)="logOut()" >
+      </Button>
+  </FlexboxLayout>
+  <FlexboxLayout  tkMainContent class="flexbox-col flex-main">
+      <page-router-outlet ></page-router-outlet>
+  </FlexboxLayout>
+</RadSideDrawer>

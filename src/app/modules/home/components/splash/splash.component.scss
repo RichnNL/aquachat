@@ -1,0 +1,97 @@
+@import '../../../../../scss/global/styles.scss';
+
+@include font-adjust;
+@include aquadis_style;
+@include gridview;
+
+// .section--fullscreen {
+//     min-height: 100%;
+// }
+
+
+.right-container p {
+  text-align: justify;
+  text-justify: inter-word;
+  margin: 30px;
+}
+
+.aquadisChatHeader {
+    height: 200px;
+    text-align: center;
+    
+    h1{
+        padding-top: 40px;
+        display: inline-block;
+    }
+}
+
+#aquaVideo {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background-color: black;
+    background-size: cover;
+    overflow: hidden;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+ul li a {
+    display: inline-block;
+}
+
+ul li {
+    padding: 1rem;
+}
+
+.text {
+    color: $light-light;
+}
+
+.aquadis_button_arrow {
+    width: 220px;
+}
+.aquadis_button_blue {
+    width: 220px;
+}
+ 
+@media screen and (max-width: 950px) {
+    #aquaVideo {
+        display: none;
+    }
+    
+    .aquadisChatHeader {
+        background: url('/assets/media/aquadis-header-mobile.png') no-repeat center;
+        background-size: cover;
+    }
+
+    .text {
+        color: $dark-dark;
+    }
+    .section--fullscreen {
+        background-color: $light-light;
+    }
+ }
+
+ @include desktop {
+    #aquaVideo {
+        top: 50% !important;
+    }
+ }
+ @include laptop {
+    #aquaVideo {
+        top: 60% !important;
+    }
+ }

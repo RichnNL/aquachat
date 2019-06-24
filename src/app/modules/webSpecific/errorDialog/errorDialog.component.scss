@@ -1,0 +1,19 @@
+
+@import '../../../../scss/global/aquadisStyles';
+@include aquadis_style;
+
+.imgcontainer {
+    margin-bottom: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: space-evenly; 
+    height: 100%;
+    width: 100%;
+    background-color: #EDF1F4;
+    border-radius: 3px;
+}
+

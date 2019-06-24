@@ -1,0 +1,11 @@
+{
+    "xml.fileAssociations": [
+        {
+            "systemId": "c:\\Users\\Dyer\\Desktop\\AquaChat\\AquaChat\\schema\\tns.xsd",
+            "pattern": "**/**/*.xml"
+        }
+    ],
+    "files.exclude": {
+        "schema": true
+    }
+}

@@ -1,0 +1,10 @@
+
+@import '../../../../../app-variables';
+FlexboxLayout {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20;
+    background-color: $secondary-light;
+    height: 100%;
+}

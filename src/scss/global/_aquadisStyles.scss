@@ -1,0 +1,153 @@
+$primary: #1B4DAC;
+$primary-light: #2c61cb;
+$primary-dark: #104097;
+$text: #293347;
+
+$secondary: #5c5b5b;
+$seconday-dark: #393939;
+$secondary-light: #a1a0a0;
+
+$accent: #B6000D;
+
+$light: #EDF1F4;
+$light-light: rgb(255, 255, 255);
+$dark: #121926;
+$dark-light: #2c2c2c;
+$dark-dark: #0f0e0e;
+
+@mixin aquadis_logo($width, $height) {
+    width: $width;
+    display: table-cell;
+    height: $height;
+    background: url('/assets/media/AquadisLogo.svg') no-repeat center;
+    background-size: contain;
+    height: $height;
+}
+
+@mixin aquadis_style {
+    * {
+        
+
+        & h1 {
+            font-family: 'geomanistmedium';
+            color: $light;
+            font-weight: bold;
+        }
+
+        & h2 {
+            font-family: 'geomanistlight';
+            color: $light;
+            font-weight: lighter;
+            padding: 0 5rem 0 1.25rem;
+        }
+
+        & p {
+            font-family: 'museo300';
+            
+        }
+
+        & .aquadis_button_white {
+            text-decoration: none;
+            font-size: 0.9375rem;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 0.875rem 2.625rem;
+            border-radius: 3px;
+            background: $light-light;
+            color: $primary;
+            font-family: "geomanistmedium";
+            letter-spacing: 4px;
+            margin-top: 2.5rem;
+            display: inline-block;
+            position: relative;
+            border: 1px solid $primary;
+            transition: all .15s ease;
+
+            &:hover {
+                color: $light;
+                background: $primary;
+            } 
+
+            &:active {
+                color: $primary;
+                background: $light-light;
+            }
+        }
+
+        & strong {
+            color: $accent;
+            font-weight: 900;
+            font-size: 2rem;
+        }
+
+        & .aquadis_button_arrow {
+            text-decoration: none;
+            padding: 0.875rem 2.625rem;
+            font-size: 0.9375rem;
+            background: $light-light;
+            text-align: center;
+            border-radius: 3px;
+            text-transform: uppercase;
+            color: $primary;
+            font-family: "geomanistmedium";
+            letter-spacing: 4px;
+            transition: all 0.30s ease;
+            &::after {
+                content: '';
+                left: 20px;
+                top: 0.25rem;;
+                position: relative ;
+                width: 1rem;
+                height: 1.0625rem;
+                display: inline-block;
+                background: url('/assets//media/arrow.png') no-repeat center;
+                background-size: 100%;
+                transition: all 0.30s ease;
+            }
+
+            &:hover {
+                background: $light;
+            }
+            &:hover::after {
+                left: 30px;
+            }
+        }
+
+        & .aquadis_button_blue {
+            text-decoration: none;
+            font-size: 0.9375rem;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 0.875rem 2.625rem;
+            background: $primary;
+            border-radius: 3px;
+            color: $light-light;
+            font-family: "geomanistmedium";
+            letter-spacing: 4px;
+            margin-top: 2.5rem;
+            display: inline-block;
+            position: relative;
+            border: 1px solid $primary;
+            transition: all .15s ease;
+        
+            &:hover {
+                border: 1px solid $primary-dark;
+                background: $primary-dark;
+            }
+        }
+
+    }
+}
+
+@mixin aquadis_underline {
+   &:after {
+    content: ‘’;
+    width: 70%;
+    position: absolute;
+    left: 0;
+    bottom: 30px;
+    border-width: 0 0 3px;
+    border-style: solid;
+    background: $primary;
+    }
+}

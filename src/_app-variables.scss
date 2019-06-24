@@ -1,8 +1,276 @@
- 
-// Import the theme’s variables. If you’re using a color scheme
-// other than “light”, switch the path to the alternative scheme,
-// for example '~nativescript-theme-core/scss/dark'.
-@import '~nativescript-theme-core/scss/light';
+$primary: #1B4DAC;
+$primary-light: #2c61cb;
+$primary-dark: rgb(16, 64, 151);
+$text: #293347;
 
-// Place any custom variables here. For example:
-// $page-content-placeholder-font-size: 20;
+$secondary: #5c5b5b;
+$secondary-dark: #393939;
+$secondary-light: #a1a0a0;
+
+$accent: #B6000D;
+
+$light: #EDF1F4;
+$light-light: rgb(255, 255, 255);
+$dark: #121926;
+$dark-light: #2c2c2c;
+$dark-dark: #0f0e0e;
+
+.action-bar {
+    color: $light-light;
+    }
+    
+    .action-bar {
+     background-color: $secondary-dark;
+    }
+    
+    .page {
+    background-color: $light;
+    }
+    
+    .tab-view {
+    tab-background-color: $light;
+    }
+    
+    .list-group, .list-group-item {
+    background-color: $light;
+    }
+    
+    .page label, .tab-view label {
+    color: $text;
+    font-family: 'geomanistmedium';
+    }
+    
+    .segmented-bar {
+    selected-background-color: $primary-light;
+    }
+    
+    .segmented-bar {
+    color: $secondary-dark;
+    }
+    
+    .segmented-bar {
+    background-color: $primary-light;
+    }
+    
+    .switch[checked=true] {
+    color: $light-light;
+    }
+    
+    .switch[checked=true] {
+    background-color: $accent;
+    }
+    
+    .activity-indicator {
+    color: $primary;
+    }
+    
+    .slider {
+    color: $light-light;
+    }
+    
+    .slider {
+    background-color: $accent;
+    }
+    
+    .progress {
+    color: $accent;
+    }
+    
+    .img-circle {
+    border-radius: 23;
+    }
+    
+    .list-group-item-heading {
+    font-size: 19;
+    }
+    
+    .list-group-item-text {
+    font-size: 16;
+    font-family: 'geomanistmedium';
+    }
+    
+    .img-rounded {
+    border-radius: 38;
+    }
+    
+    .body {
+    font-size: 20;
+    }
+    
+    .h1 {
+    font-size: 46;
+    }
+    
+    .h2 {
+    font-size: 34;
+    }
+    
+    .h3 {
+    font-size: 24;
+    }
+    
+    .h4 {
+    font-size: 18;
+    }
+    
+    .h5 {
+    font-size: 14;
+    }
+    
+    .h6 {
+    font-size: 12;
+    }
+    
+    .page label.text-primary, .tab-view label.text-primary {
+    color: $primary;
+    font-family: 'museo300';
+    }
+    
+    .page label.bg-primary, .tab-view label.bg-primary {
+    background-color: $primary;
+    }
+    
+    .page label.text-danger, .tab-view label.text-danger {
+    color: $accent;
+    font-family: 'geomanistmedium';
+    }
+    
+    .page label.bg-danger, .tab-view label.bg-danger {
+    background-color: $accent;
+    }
+    
+    .page label.text-muted, .tab-view label.text-muted {
+    color: $secondary;
+    font-family: 'museo300';
+    }
+
+    .btn-main {
+        -moz-box-shadow: 0px 10px 14px -7px $primary;
+        -webkit-box-shadow: 0px 10px 14px -7px $primary;
+        box-shadow: 0px 10px 14px -7px $primary;
+        background-color:$primary;
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 19px;
+        border-radius:19px;
+        border:1px solid $primary;
+        display:inline-block;
+        cursor:pointer;
+        color:$light-light;
+        font-family: 'museo300';
+        font-size: 21px;
+        width: 80%;
+        font-weight:bold;
+        padding: 13px 52px;
+        text-decoration:none;
+        text-shadow: 0px 1px 0px $primary;
+    }
+    
+    .btn {
+    color: $light-light;
+    }
+    
+    .btn-primary {
+    background-color: $primary;
+    }
+    
+    .btn-primary {
+    border-color: $primary;
+    }
+    
+    .btn-primary {
+    color: $light-light;
+    }
+    
+    .btn-outline {
+    border-color: #00318f;
+    }
+    
+    .btn-outline {
+    background-color: transparent;
+    }
+    
+    .btn-outline {
+    border-width: 1;
+    }
+    
+    .btn-outline {
+    color: $primary;
+    }
+    
+    .btn[isEnabled=false] {
+    background-color: $secondary-light;
+    }
+    
+    .btn[isEnabled=false] {
+    border-color: $secondary-light;
+    }
+    
+    .btn[isEnabled=false] {
+    color: $light-light;
+    }
+    
+    .btn-rounded-sm {
+    border-radius: 3;
+    }
+    
+    .btn-rounded-lg {
+    border-radius: 3;
+    }
+    
+    .label {
+    font-size: 16;
+    }
+    
+    .input {
+    font-size: 14;
+    }
+    
+    .input-rounded {
+    border-radius: 30;
+    }
+    
+    .tab-view {
+    selected-tab-text-color: $light-light;
+    font-family: 'geomanistmedium';
+    }
+    
+    .tab-view {
+    tab-text-color: $light-light;
+    font-family: 'geomanistmedium';
+    }
+    
+    .tab-view {
+    tab-background-color: $secondary-light;
+    }
+    
+    .tab-view {
+    android-selected-tab-highlight-color: $primary;
+    }
+    
+    .sidedrawer-header {
+    background-color: $primary;
+    }
+    
+    .sidedrawer-header-brand {
+    color: $light-light;
+    }
+    
+    .sidedrawer-content {
+    background-color: $light;
+    }
+    
+    .sidedrawer-list-item {
+    color: $text;
+    font-family: 'museo300';
+    }
+    
+    .sidedrawer-list-item.active {
+    background-color: $secondary
+    }
+    
+    .sidedrawer-list-item.active {
+    color: $text;
+    font-family: 'museo300';
+    }
+    
+    

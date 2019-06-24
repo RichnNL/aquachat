@@ -1,0 +1,10 @@
+<FlexboxLayout action-bar [Title]="'Aqua Chat'" >
+    <ListView [items]="channelList" (itemTap)="itemClicked($event)" >
+        <ng-template let-channel="item" let-i="index" let-odd="odd" let-even="even">
+            <StackLayout orientation="horizontal">
+                <Label [text]="channel"></Label>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</FlexboxLayout>
+

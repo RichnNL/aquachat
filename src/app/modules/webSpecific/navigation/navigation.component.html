@@ -1,0 +1,46 @@
+<div class="header">
+        <div class="container" [ngClass]="sideNavOpen ? 'logo-container-side-open' : 'logo-container'">
+            <a class="logo nav-item"></a>    
+            <img class="aquadisLogo"  src="../../../../assets//icons/logoIn.svg"> 
+                
+        </div>
+        <div class='nav-bar container'  >
+            <a class="nav-item" *ngIf="loggedIn$ | async"  (click)="$event.preventDefault();homeClicked()"> {{'Nav.home' | translate}}    </a>
+            <a class="nav-item" *ngIf="displayName.length === 0 && loggedIn$ | async"  (click)="$event.preventDefault();profileClicked()"> {{'Nav.profile' | translate}} </a>
+            <a class="nav-item" *ngIf="displayName.length > 1 && loggedIn$ | async"  (click)="$event.preventDefault();profileClicked()"> {{displayName}} </a>
+            <a class="nav-item" *ngIf="loggedIn$ | async" (click)="$event.preventDefault();logoutClicked()" >{{'Nav.logout' | translate}}</a>
+            <a class="nav-item" *ngIf="!(loggedIn$ | async)" (click)="$event.preventDefault();loginClicked()">{{'Nav.login' | translate}}</a> 
+        </div>
+        <div id="reverse-collpased">
+            <app-language-selector></app-language-selector>
+        </div>
+        <div class="container " id="collapsed">
+            <img class="menu-icon"  (click)="toggleSideNav()" (click)="drawer.toggle()" src="../../../../assets/icons/burgerNotSelected.svg"  >
+        </div>
+        <mat-drawer #drawer class="sidenav-container" mode="side" position="end">
+            <ul class="sidenav">
+                    <li class="sidenav-item sidenav-menu">
+                            <img class="menu-icon" (click)="toggleSideNav()" (click)="drawer.toggle()"  src="../../../../assets//icons/burgerSelected.svg"   >
+                    </li>
+                    <li *ngIf="loggedIn$ | async" class=sidenav-item  (click)="$event.preventDefault();homeClicked()">
+                            <a> {{'Nav.home' | translate}}    </a>
+                    </li>
+                    <li *ngIf="displayName.length === 0 && loggedIn$ | async" class=sidenav-item (click)="$event.preventDefault();profileClicked()">
+                            <a> {{'Nav.profile' | translate}} </a>
+                    </li>
+                    <li *ngIf="displayName.length > 1 && loggedIn$ | async" class=sidenav-item (click)="$event.preventDefault();profileClicked()">
+                                <a>{{displayName}} </a>
+                        </li>
+                    <li *ngIf="!(loggedIn$ | async)" class=sidenav-item (click)="$event.preventDefault();loginClicked()">
+                            <a>{{'Nav.login' | translate}}</a>
+                            </li>
+                    <li *ngIf="loggedIn$ | async" class=sidenav-item (click)="$event.preventDefault();logoutClicked()">
+                            <a>{{'Nav.logout' | translate}}</a>
+                    </li>
+                    <li class="sidenav-item" id="sidenav-item-lang">
+                            <app-language-selector></app-language-selector>
+                    </li>
+            </ul>
+        </mat-drawer>
+    
+    </div>

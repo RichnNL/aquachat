@@ -1,0 +1,27 @@
+@import '../../../../../scss/global/styles.scss';
+@include font-adjust;
+@include aquadis_style;
+@include gridview;
+
+
+.top-row {
+    justify-content: flex-end;
+}
+.sidemenu {
+    margin: 0;
+    padding: 0;
+}
+
+.closed{
+    min-width: 3em !important;
+    max-width: 3.5em !important;
+}
+
+.mainContent {
+    background-color: $secondary-light;
+    min-height: calc(100vh - #{$nav-bar-height});
+    height: auto;
+    padding: 15px;
+    margin-left: 10px
+}
+

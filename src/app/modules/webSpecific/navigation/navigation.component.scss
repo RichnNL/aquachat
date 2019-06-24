@@ -1,0 +1,185 @@
+@import '../../../../scss/global/styles.scss';
+
+
+
+.body {
+  font-family: $medium_font;
+  margin: 0;
+}
+
+.header {
+  min-width: $nav-bar-min-width;
+  max-width: 100%;
+  max-height: $nav-bar-height;
+  background-color: $dark-dark;
+  overflow:hidden;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+}
+
+
+.nav-bar {
+    list-style-type: none;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    line-height: 100%;
+    height: $nav-bar-height;
+    display: flex;
+    align-self: center;
+    width: 70%;
+  }
+  
+.nav-item {
+    align-self: center;
+    text-decoration: none;
+    color: $light-light;
+    padding: 1rem 1rem;
+    @if $nav-item-font-bold == true {
+      font-weight: bold;
+    } @else {
+      font-weight: normal;
+    }
+    font-size: $nav-item-font-size;
+    transition: all 0.30s ease;
+    text-align:center;
+    box-sizing:border-box;
+    cursor: pointer;
+  }
+
+.nav-item:hover {
+  color: $secondary-light;
+}
+
+.aquadisLogo {
+  margin-left: 10px;
+  height: $aquachat-logo-size;
+  width: $aquachat-logo-size;
+}
+
+.nav-menu {
+  text-decoration: none;
+  background: none;
+	border: none;
+  outline: inherit;
+}
+
+.logo {
+  @include aquadis_logo($aquadis-text-logo-width, $aquadis-text-logo-height); 
+}
+
+.container {
+  margin: .5rem;
+}
+
+.logo-container {
+  display: flex;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.logo-container-side-open {
+  display: flex;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.sidenav-container {
+  padding: 0;
+  display: none;
+  width: $side-navigation-width;
+  background: $primary-light;
+  margin-top: 0;
+  text-align: center;
+  border: none !important;
+}
+
+#sidenav-item-lang {
+  background-color: $primary-dark !important; 
+}
+
+.sidenav {
+  list-style-type: none;
+  padding: 0;
+  text-transform: capitalize;
+  background-color: $primary;
+  margin: 0;
+}
+
+.sidenav-item a {
+  display: inline-block;
+  padding: 0;
+}
+
+.sidenav-item {
+  padding: 0;
+  line-height: $nav-bar-height;
+  height: $nav-bar-height;
+  text-decoration: none;
+  color: $light-light;
+  font-size: 1.5rem;
+  transition: all 0.30s ease;
+  font-family: $medium_font;
+ 
+
+  
+  &:hover {
+    color: $secondary-light
+  }
+}
+
+
+.sidenav-menu {
+  background-color: $dark-dark;
+  height: $nav-bar-height;
+  line-height: $nav-bar-height;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $dark-dark;
+}
+
+  @include tablet {
+
+    #reverse-collpased {
+      display: none;
+    }
+
+   .nav-bar {
+     display: none;
+   }
+
+   #collapsed  {
+    display: inline-block;
+  }
+
+  
+
+  .menu-icon {
+    width: $side-menu-icon-size;
+    height: $side-menu-icon-size;
+  }
+
+  .sidenav-container {
+    display: block;
+    overflow: hidden;
+    background-color: #fbfbfb00
+  }
+   .logo-container {
+     justify-self: flex-start;
+     margin-left: .8rem;
+     margin-right: .5rem;
+   }
+
+   .logo-container-side-open {
+    justify-self: flex-start;
+    margin-left: .2rem;
+    margin-right: $side-navigation-width;
+   }
+  }
+
+  ::ng-deep .mat-drawer-inner-container {
+    overflow: hidden !important;
+  }
+

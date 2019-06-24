@@ -1,0 +1,13 @@
+{
+    "Home": {
+        "title": "Hallo Werld",
+        "text": "Dit is een nieuwe project",
+        "greeting": "Hallo {{name}}!"
+    },
+    "Nav": {
+        "login": "Inloggen",
+        "logout": "Afmelden",
+        "home": "Home",
+        "profile": "Profiel"
+    }
+}

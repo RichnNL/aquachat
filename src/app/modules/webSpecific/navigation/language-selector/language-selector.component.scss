@@ -1,0 +1,72 @@
+@import '../../../../../scss/global/styles.scss';
+#current-lang-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+#current-language-flag {
+    margin-right: 6px;
+    height: $selected-language-flag-size; 
+    width: $selected-language-flag-size;
+}
+
+#current-language-text {
+    text-transform: uppercase;
+    font-size: $selected-language-font-size;
+  }
+
+  
+#current-language-icon {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    height: $selected-language-icon-size; 
+    width: $selected-language-icon-size;
+  }
+
+  #option-label {
+    font-family: $light_font;
+  }
+
+.option-flag {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+  }
+
+.option-text {
+  margin-left: 3px;
+  text-transform: capitalize;
+
+  }
+
+
+  ::ng-deep .mat-select-value {
+    margin-right: 3px;
+  }
+
+  ::ng-deep .mat-select-arrow {
+    width: 0 ;
+    height: 0 ;
+    border-left: 0px solid transparent !important;
+    border-right: 0px solid transparent !important;
+    border-top: 0px solid !important;
+    margin: 0 4px;
+}
+
+::ng-deep .mat-select-panel {
+  margin-top: 60px !important;
+}
+
+::ng-deep .mat-form-field-underline {
+    display: none;
+  }
+  
+  ::ng-deep .mat-select-value {
+    color: $light-light;
+    font-family: $medium_font;
+    padding: 1rem 1rem;
+    font-size: $nav-item-font-size;
+    height: 100%;
+    text-align:center;
+  }

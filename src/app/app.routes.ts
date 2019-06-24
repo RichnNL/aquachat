@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
-
-import { HomeComponent } from './home/home.component';
+import { SplashComponent } from './modules/home/components/splash/splash.component';
+import {DashboardComponent} from './modules/home/components/dashboard/dashboard.component';
+import {AuthenticationGuard} from './core/guards/authentication.guard';
 
 export const routes: Routes = [
   {
@@ -10,6 +11,15 @@ export const routes: Routes = [
   },
   {
       path: 'home',
-      component: HomeComponent,
+      component: SplashComponent
   },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: '**',
+    redirectTo: '/home'
+  }
 ];
