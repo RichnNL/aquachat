@@ -40,7 +40,7 @@ export class ActionBarDirective{
               bar.navigationButton = this.getNavigationButton();
           }
           bar.actionItems.addItem(this.getMenuButton());
-          bar.addCss('.action {background: #a1a0a0; color: white; text-align: center;}');
+          bar.addCss('.action {background: #a1a0a0; color: white; text-align: center;  font-weight: bold;}');
           bar.className = 'action';
           bar.flat = true;
           return bar;
@@ -64,7 +64,6 @@ export class ActionBarDirective{
           if (isAndroid) {
             navButton.android.position = 'actionBar';
         }
-        navButton.
         navButton.alignSelf = 'flex-end';
           return navButton;
       }
