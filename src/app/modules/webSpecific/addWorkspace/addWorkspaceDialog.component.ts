@@ -26,6 +26,7 @@ import { ChatStatusState } from '../../../shared/ngxs/state/chat.state';
         @Inject(MAT_DIALOG_DATA) public data: string, private store: Store) {
             const userId = this.store.selectSnapshot(AuthenticationState).user.UserId;
             const userWorkspaces: WorkspaceDetailsModel[]  = this.store.selectSnapshot(ChatStatusState).myWorkspaces;
+            
             this.aquachatAPI.getAllWorkspace(userId).subscribe(result => {
                 this.workspaces = result;
                 if (userWorkspaces != null) {

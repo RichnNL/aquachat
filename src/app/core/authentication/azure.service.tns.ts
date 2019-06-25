@@ -102,6 +102,7 @@ export class AzureService {
         if (newUser) {
             if (newUser === 'true') {
                 // TODO Register for notifications
+                console.log('new user');
                 const user: RegisterUserDetails = this.getRegisterUser(userModel);
                 this.aquaChatAPI.registerUser(user).subscribe(result => {
                     let message;

@@ -5,7 +5,7 @@ import { HideActionBarDirective } from '../mobileSpecific/directives/hidden.acti
 import {ActionBarDirective} from '../mobileSpecific/directives/actionbar.component.tns';
 import {SharedModule} from '../../shared/shared.module';
 import { CommonModule } from '@angular/common';
-import { ChatModel } from '../../core/models/ChatModel';
+import { ChatModule } from '../chat/chat.module';
 @NgModule({
     declarations: [
       SplashComponent,
@@ -13,7 +13,7 @@ import { ChatModel } from '../../core/models/ChatModel';
       HideActionBarDirective,
       ActionBarDirective],
     imports: [
-      ChatModel,
+      ChatModule,
       CommonModule,
       SharedModule],
   })

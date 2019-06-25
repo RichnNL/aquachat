@@ -21,7 +21,11 @@ import {NativeScriptUISideDrawerModule} from 'nativescript-ui-sidedrawer/angular
 import { UIState } from './shared/ngxs/state/ui.state';
 import { AzureInterceptorService } from './core/interceptor/azureInterceptor';
 import { environment } from '../environments/environment';
-
+import {MobileSpecificModule} from './modules/mobileSpecific/mobileSpecific.module';
+import { ModalDialogService } from 'nativescript-angular/modal-dialog';
+import { SelectWorkspaceModal } from './modules/mobileSpecific/modals/selectWorkspace/selectWorkspace.modal.component.tns';
+import { CreateWorkspaceModal } from './modules/mobileSpecific/modals/createWorkspace/createWorkspace.modal.component.tns';
+import { LoadingModal } from './modules/mobileSpecific/modals/loadingModal/loading.modal.tns';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import { environment } from '../environments/environment';
     HomeModule,
     SharedModule,
     CommonModule,
+    MobileSpecificModule,
     NgxsModule.forRoot([
       AuthenticationState,
       LanguageState,
@@ -55,7 +60,8 @@ import { environment } from '../environments/environment';
     }),
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AzureInterceptorService, multi: true}],
+    {provide: HTTP_INTERCEPTORS, useClass: AzureInterceptorService, multi: true}, ModalDialogService],
+  entryComponents: [SelectWorkspaceModal, CreateWorkspaceModal, LoadingModal],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })

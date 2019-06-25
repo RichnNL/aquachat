@@ -1,19 +1,20 @@
 import {MatDialog} from '@angular/material';
 import {LoadingDialogComponent} from '../../..//modules/webSpecific/loading/loadingDialog.component';
 import { ErrorDialogComponent } from '../../../modules/webSpecific/errorDialog/errorDialog.component';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy, ViewContainerRef } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { IsLoading } from '../../ngxs/actions/appStatus.action';
+import { Observable, Subscription } from 'rxjs';
 import { AddWorkspaceDialogComponent } from '../../..//modules/webSpecific/addWorkspace/addWorkspaceDialog.component';
 
 
 @Injectable()
-export class DialogHelper {
+export class DialogHelper implements OnDestroy {
+
     loadingDialog: any;
+    isloadingSubscription: Subscription;
     @Select(state => state.StatusState.isLoading) isLoading$: Observable<number>;
     constructor(private dialog: MatDialog, private store: Store) {
-      this.isLoading$.subscribe((loading) => {
+     this.isloadingSubscription = this.isLoading$.subscribe((loading) => {
         if (loading === 1) {
           this.openLoadingDialog();
         } else if (loading === 0) {
@@ -37,6 +38,15 @@ export class DialogHelper {
 
       }
 
+      
+      openSelectWorkspaceDialog(viewContainerRef: ViewContainerRef) {
+        this.openWorkspaceDialog();
+      }
+
+      openCreateWorkspaceDialog(viewContainerRef: ViewContainerRef) {
+        this.openWorkspaceDialog();
+      }
+
       openErrorDialog() {
         this.dialog.open(ErrorDialogComponent, { disableClose: false, height: '250px',
         width: '250px', panelClass: 'loadingpanel', data: 'Request Timeout' });
@@ -44,7 +54,11 @@ export class DialogHelper {
 
       openWorkspaceDialog() {
         this.dialog.open(AddWorkspaceDialogComponent, { disableClose: false, height: '300px',
-        width: '500px' });
+        width: '350px' });
+      }
+
+      ngOnDestroy(): void {
+        this.isloadingSubscription.unsubscribe();
       }
 }
 

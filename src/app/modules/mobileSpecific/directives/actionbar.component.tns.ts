@@ -64,6 +64,7 @@ export class ActionBarDirective{
           if (isAndroid) {
             navButton.android.position = 'actionBar';
         }
+        navButton.
         navButton.alignSelf = 'flex-end';
           return navButton;
       }
