@@ -8,10 +8,12 @@
         </FlexboxLayout>
         
         <FilterSelect 
+        *ngIf="workspacesAvailable"
+        xbtn="UnSelect"
         height="20%"
         autofocus="true"
-        search_param="Name"
-        [items]="workspaces"
+        search_param="name"
+        [items]="items"
         (change)="onitemselected($event)"
         hint="Select a Workspace" 
         modal_title="Workspaces"
@@ -19,9 +21,11 @@
         searchHint="Search for a Workspace"
         selectText="Select Workspace"
         multiple="false"
-        primary_key="Id">
+        primary_key="code">
  
         </FilterSelect>
+
+        <Label *ngIf="!workspacesAvailable" class="h2 label" text="No Workspaces Available"></Label>
     
-        <Button *ngIf="!taken" class="btn-secondary button" (tap)="createWorkspace()" text="Create Workspace"> </Button>
+        <Button *ngIf="selected" class="btn-secondary button" (tap)="selectWorkspace()" text="Join Workspace"> </Button>
     </FlexboxLayout>

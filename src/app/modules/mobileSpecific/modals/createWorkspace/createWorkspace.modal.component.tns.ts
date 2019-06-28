@@ -39,9 +39,7 @@ export class CreateWorkspaceModal {
         }
     }
 
-    createWorkspace() {
-
-    }
+   
 
     onClose() {
        this._params.closeCallback();

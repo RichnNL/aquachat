@@ -95,17 +95,12 @@ import { UserModel } from '../../../shared/models/user.model';
             }
         }
     }
-    selectWorkspace($event) {
-        this.chosen = true;
-        console.log($event);
-        // this.selectedWorkspace = workspace;
-    }
 
     join() {
         if (this.workspacesAvailable) {
             this.aquachatAPI.addSelfToWorkspace(this.userId, this.email, this.selectedWorkspace.Id).subscribe((result) => {
                 if (result.ErrorMessage.length === 0){
-                    this.toast.showMessage('Added to Workspace');
+                    this.toast.showMessage('Joined Workspace');
                 } else {
                     this.toast.showMessage('Could not add to Workspace');
                 }
