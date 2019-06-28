@@ -1,4 +1,15 @@
-<FlexboxLayout class="title-container">
-    <Label class="h1" text="Aqua Chat"></Label>
-    <Image src="res://logo_mobile" class="img" stretch ="none"> </Image>    
+<FlexboxLayout backgroundColor="#a1a0a0" class="container"  >
+    <FlexboxLayout class="header" backgroundColor="#2c61cb">
+        <Image  src="res://workspace_logo" class="img" stretch ="none"> </Image>    
+        <Label class="h3 title" text="Create a Workspace"></Label>
+        <StackLayout  orientation="horizontal" padding="5" (tap)="onClose()" >
+                <Image src="res://exit_white" class="img" stretch ="none"> </Image> 
+        </StackLayout>
+    </FlexboxLayout>
+    
+    <MDTextField #inputField class="input" placeholderColor={{colour}} maxLength="40" 
+    hint="Name" returnKeyType="next" floating="true" error={{error}} errorColor={{colour}}
+    (textChange)="type(inputField.text)"></MDTextField>
+
+    <Button *ngIf="!taken" class="btn-secondary button" (tap)="createWorkspace()" text="Create Workspace"> </Button>
 </FlexboxLayout>

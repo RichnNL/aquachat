@@ -1,4 +1,27 @@
-<FlexboxLayout class="title-container">
-    <Label class="h1" text="Aqua Chat"></Label>
-    <Image src="res://logo_mobile" class="img" stretch ="none"> </Image>    
-</FlexboxLayout>
+<FlexboxLayout backgroundColor="#a1a0a0" class="container"  >
+        <FlexboxLayout class="header" backgroundColor="#2c61cb">
+            <Image  src="res://workspace_logo" class="img" stretch ="none"> </Image>    
+            <Label class="h3 title" text="Select a Workspace"></Label>
+            <StackLayout  orientation="horizontal" padding="5" (tap)="onClose()" >
+                    <Image src="res://exit_white" class="img" stretch ="none"> </Image> 
+            </StackLayout>
+        </FlexboxLayout>
+        
+        <FilterSelect 
+        height="20%"
+        autofocus="true"
+        search_param="Name"
+        [items]="workspaces"
+        (change)="onitemselected($event)"
+        hint="Select a Workspace" 
+        modal_title="Workspaces"
+        change="onitemselected(event)"
+        searchHint="Search for a Workspace"
+        selectText="Select Workspace"
+        multiple="false"
+        primary_key="Id">
+ 
+        </FilterSelect>
+    
+        <Button *ngIf="!taken" class="btn-secondary button" (tap)="createWorkspace()" text="Create Workspace"> </Button>
+    </FlexboxLayout>

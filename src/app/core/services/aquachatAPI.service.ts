@@ -143,10 +143,11 @@ export class AquachatAPIService {
                    );
     }
 
-    getAllWorkspace(userid: string): Observable<Workspace[]> {
+    getAllWorkspace(userid: string, search: string): Observable<Workspace[]> {
         return this.http.get(HTTPUrls.getAllWorkspace, {
             params: {
               userid: userid,
+              search: search
             }} ).pipe(
                map((result: any) => {
                  return this.responseToWorkspace(result);
@@ -390,6 +391,21 @@ getWorkspaceMessages(userId: string, workspaceId: string): Observable<MessageMod
           r = message.message;
         }
         return r;
+    }
+
+    getWorkspaceNameTaken(workspaceName: string): Observable<boolean> {
+        return this.http.get(HTTPUrls.getWorkspaceNameTaken,
+                            { params: {
+                                name: workspaceName
+                              }}
+                            ).pipe(
+                                map( r => {
+                                    if (r) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+                            }));
     }
 
 

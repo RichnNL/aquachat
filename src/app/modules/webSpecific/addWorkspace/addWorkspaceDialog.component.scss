@@ -2,3 +2,92 @@
 
 @include font-adjust;
 @include aquadis_style;
+
+  ::ng-deep .mat-expansion-panel{
+    background-color: $primary-light;
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    background-color: $light !important;
+    font-family: $medium_font;
+  }
+
+  ::ng-deep .mat-input-element {
+      background-color: #cecdcd;
+     
+  }
+
+  #input {
+        width: 80%;
+  }
+
+  #error {
+    color: $accent;
+  }
+
+  .container {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .header {
+    align-self: flex-start;
+    width: 100%;
+    color: $light;
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 2px solid $light;
+    padding-bottom: 1px;
+    font-size: 18px !important;
+  }
+
+  .content {
+    align-items: center;
+  }
+
+  .icon {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+  }
+
+  .button {
+    height: 15px;
+    font-size: 0.7575rem !important;
+    width: 80% !important;
+    padding: 0.75rem 0.625rem !important;
+    letter-spacing: 1px !important;
+  }
+
+  .buttonblue {
+    background: $primary-light !important;
+  }
+
+  ::ng-deep .ngx-select {
+    margin-top: 10px;
+  }
+
+  .title {
+    color: $light;
+    font-family: $medium_font;
+  }
+
+  .disabled {
+    text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+  }
+
+  ::ng-deep .mat-dialog-container {
+    background-color: $secondary-light;
+  }
+
+  .description {
+    color: $text;
+    font-family: $light_font;
+  }
+  
+
+  

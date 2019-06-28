@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { AquachatAPIService } from '../../../../core/services/aquachatAPI.service';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { WorkspaceDetailsModel } from '../../../../core/models/WorkspaceDetailsModel';
 import { DialogHelper } from '../../../../shared/helpers/dialog/dialog.helper';
+import { SetActionTitle } from '../../../../shared/ngxs/actions/ui.action';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,7 +19,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   workspaceSubscription: Subscription;
   open = false;
   noWorkspaces = true;
-  constructor(private webAPIService: AquachatAPIService, private dialogHelper: DialogHelper, private viewContainerRef: ViewContainerRef) {
+  constructor(private webAPIService: AquachatAPIService, private dialogHelper: DialogHelper, 
+    private viewContainerRef: ViewContainerRef, private store: Store) {
     this.sideOpen$.subscribe((isOpen) => {
       this.open = isOpen;
     });
@@ -27,6 +29,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (result != null) {
       if (result.Name.length > 0) {
         this.workspacename = result.Name;
+        this.store.dispatch(new SetActionTitle(result.Name));
       }
 
       this.noWorkspaces = false;
@@ -34,6 +37,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }  else {
       this.noWorkspaces = true;
       this.workspacename = 'Select a Workspace';
+      this.store.dispatch(new SetActionTitle(this.workspacename));
+      
     }
     });
    }

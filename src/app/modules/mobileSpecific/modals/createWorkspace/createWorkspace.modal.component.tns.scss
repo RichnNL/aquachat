@@ -1,0 +1,41 @@
+@import '../../../../../app-variables';
+
+.container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $secondary-light;
+    flex-wrap: nowrap;
+}
+
+.modal-dialog-container {
+    background-color: $secondary-light;
+  }
+
+.img {
+    height: 50;
+}
+
+.header {
+    flex-direction: row; 
+    justify-content: space-around;
+    background-color: $primary-light;
+    width: 100%;
+    padding-top: 10;
+    padding-bottom: 10;
+}
+
+.title {
+    margin-left: 25;
+    color: $light-light;
+
+}
+
+.input {
+    margin-top: 20%;
+    width: 80%;
+}
+
+.button {
+    margin-top: 15%;
+}

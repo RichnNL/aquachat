@@ -3,14 +3,15 @@ import { ModalDialogOptions, ModalDialogService } from 'nativescript-angular/dir
 import { LoadingModal } from '../../../modules/mobileSpecific/modals/loadingModal/loading.modal.tns';
 import { SelectWorkspaceModal } from '../../../modules/mobileSpecific/modals/selectWorkspace/selectWorkspace.modal.component.tns';
 import { CreateWorkspaceModal } from '../../../modules/mobileSpecific/modals/createWorkspace/createWorkspace.modal.component.tns';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Subscription, Observable } from 'rxjs';
+import { SetPreviousTitle } from '../../ngxs/actions/ui.action';
 @Injectable()
 export class DialogHelper implements OnDestroy {
   loadingDialog: any;
   isloadingSubscription: Subscription;
   @Select(state => state.StatusState.isLoading) isLoading$: Observable<number>;
-    constructor( private _modalService: ModalDialogService) {
+    constructor( private _modalService: ModalDialogService, private store: Store) {
         this.isloadingSubscription = this.isLoading$.subscribe((loading) => {
           if (loading === 1) {
             this.openLoadingDialog();
@@ -42,6 +43,7 @@ export class DialogHelper implements OnDestroy {
         this._modalService.showModal(CreateWorkspaceModal, this.getFullSizeOptions(viewContainerRef))
             .then((result: string) => {
                 console.log(result);
+                this.store.dispatch(new SetPreviousTitle());
             });
       }
 
@@ -49,6 +51,7 @@ export class DialogHelper implements OnDestroy {
         this._modalService.showModal(SelectWorkspaceModal, this.getFullSizeOptions(viewContainerRef))
         .then((result: string) => {
             console.log(result);
+            this.store.dispatch(new SetPreviousTitle());
         });
       }
 

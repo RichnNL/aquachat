@@ -12,17 +12,14 @@ import {UIState} from '../../../shared/ngxs/state/ui.state';
     selector:'[action-bar]'
 })
 
-export class ActionBarDirective{
-      @Input('Title')
-      set title(value: string) {
-          if (value) {
-            this.page.actionBar.title = value;
-          }
-        }
-
+export class ActionBarDirective {
+      @Select(state => state.UIState.actionBarTitle) actionBar$: Observable<string>;
       private navigationBack: ActionItem;
       constructor(private page: Page, private router: RouterHelper, private store: Store) {
         this.page.actionBar = this.createActionBar();
+        this.actionBar$.subscribe(title => {
+          this.page.actionBar.title = title;
+        });
       }
       onBack() {
          this.router.back();

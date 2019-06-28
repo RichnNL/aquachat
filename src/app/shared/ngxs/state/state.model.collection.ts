@@ -31,6 +31,7 @@ export interface UIStateModel {
     sideNavOpen: boolean;
     canGoBack: boolean;
     showWorkspaces: boolean;
+    actionBarTitle: string;
 }
 
 export interface ChatStateModel {

@@ -10,6 +10,8 @@ import { HttpLoaderFactory } from '../../../app/config/language.config';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AddWorkspaceDialogComponent } from './addWorkspace/addWorkspaceDialog.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
+import { DropdownListModule } from 'ngx-dropdown-list';
 
 @NgModule({
     declarations: [
@@ -20,6 +22,7 @@ import { AddWorkspaceDialogComponent } from './addWorkspace/addWorkspaceDialog.c
         AddWorkspaceDialogComponent
     ],
     imports: [MaterialModule,
+        DropdownListModule,
         FormsModule,
          CommonModule,
          TranslateModule.forRoot({

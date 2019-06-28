@@ -1,13 +1,14 @@
 import {State, Action, StateContext, NgxsOnInit} from '@ngxs/store';
 import {UIStateModel } from './state.model.collection';
-import { ToggleSideNav, SetCanGoBack, ToggleWorkspaces } from '../actions/ui.action';
+import { ToggleSideNav, SetCanGoBack, ToggleWorkspaces, SetActionTitle, SetPreviousTitle } from '../actions/ui.action';
 
 @State<UIStateModel>({
     name: 'UIState',
     defaults: {
         sideNavOpen: false,
         canGoBack: false,
-        showWorkspaces: false
+        showWorkspaces: false,
+        actionBarTitle: null
     }
 })
 
@@ -15,7 +16,7 @@ import { ToggleSideNav, SetCanGoBack, ToggleWorkspaces } from '../actions/ui.act
 export class UIState implements NgxsOnInit {
 
     constructor() {}
-
+    private previousValue: string;
     ngxsOnInit(state: StateContext<UIStateModel>) {}
 
 
@@ -41,5 +42,28 @@ export class UIState implements NgxsOnInit {
         patchState({
             showWorkspaces: bol
         });
+       }
+
+       @Action(SetActionTitle)
+       setActionTitle({getState, patchState}: StateContext<UIStateModel>, {payload}: SetActionTitle) {
+        const current = getState().actionBarTitle;
+        if (current != null) {
+            if (current.length > 0) {
+                this.previousValue = current;
+            }
+        }
+
+        patchState({
+            actionBarTitle: payload
+        });
+       }
+
+       @Action(SetPreviousTitle)
+       setPreviousTitle({getState, patchState}: StateContext<UIStateModel>, {}: SetPreviousTitle) {
+        if (this.previousValue != null) {
+            patchState({
+                actionBarTitle: this.previousValue
+            });
+        }
        }
 }

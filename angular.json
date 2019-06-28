@@ -50,6 +50,10 @@
                   {
                     "replace": "src/app/config/signalR.config.ts",
                     "with": "src/app/config/signalR.config.prod.ts"
+                  },
+                  {
+                    "replace": "src/app/config/urls.config.ts",
+                    "with": "src/app/config/urls.config.prod.ts"
                   }
               ],
               "optimization": true,

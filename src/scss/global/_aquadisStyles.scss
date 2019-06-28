@@ -4,7 +4,7 @@ $primary-dark: #104097;
 $text: #293347;
 
 $secondary: #5c5b5b;
-$seconday-dark: #393939;
+$secondary-dark: #393939;
 $secondary-light: #a1a0a0;
 
 $accent: #B6000D;
@@ -110,6 +110,29 @@ $dark-dark: #0f0e0e;
             }
             &:hover::after {
                 left: 30px;
+            }
+        }
+
+        & .aquadis_disabled {
+            text-decoration: none;
+            font-size: 0.9375rem;
+            text-align: center;
+            text-transform: uppercase;
+            padding: 0.875rem 2.625rem;
+            background: $secondary-dark ;
+            border-radius: 3px;
+            color: $secondary;
+            font-family: "geomanistmedium";
+            letter-spacing: 4px;
+            margin-top: 2.5rem;
+            display: inline-block;
+            position: relative;
+            border: 1px solid $secondary;
+            transition: all .15s ease;
+        
+            &:hover {
+                opacity: 0.65; 
+                cursor: not-allowed;
             }
         }
 

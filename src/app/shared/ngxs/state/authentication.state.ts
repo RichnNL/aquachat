@@ -24,6 +24,7 @@ export class AuthenticationState implements NgxsOnInit {
     ngxsOnInit(state: StateContext<AuthenticationStateModel>) {
         const token = this.getTokenFromDevice();
         const id = this.storage.getVariable('userid');
+
         if (id) {
             if (id.length > 0) {
                 state.patchState({
@@ -33,7 +34,7 @@ export class AuthenticationState implements NgxsOnInit {
         }
         if (this.tokenIsValid(token)) {
              if (token.tokenType === 'access') {
-                 let user: UserModel = this.storage.getObject('user');
+                 let user: UserModel = this.storage.getObject('user')
                  if (user) {
                      state.patchState({
                          user: user,
@@ -42,6 +43,7 @@ export class AuthenticationState implements NgxsOnInit {
                     });
                 } else {
                     user = this.azureService.setUser();
+                    let user2: UserModel = this.storage.getObject('user');
                     if ( user !== null) {
                         state.patchState({
                             user: user,
@@ -65,6 +67,8 @@ export class AuthenticationState implements NgxsOnInit {
                 }
                 this.azureService.setAccessToken();
            }
+         } else {
+            this.setEmptyToken();
          }
 
     }
@@ -104,6 +108,12 @@ export class AuthenticationState implements NgxsOnInit {
         return true;
     }
 
+    private setEmptyToken(): TokenModel {
+        const emptyToken = new TokenModel('', 'logout');
+        this.storage.setObject('azureToken', emptyToken);
+        return emptyToken;
+    }
+
     private saveTokenLocally(token: TokenModel, patchState: (val: Partial<AuthenticationStateModel>) => AuthenticationStateModel ) {
         if (this.tokenIsValid(token)) {
             this.storage.setObject('azureToken', token);
@@ -120,10 +130,10 @@ export class AuthenticationState implements NgxsOnInit {
 
     @Action(SetLoggedIn)
         setLoggedIn({getState, patchState}: StateContext<AuthenticationStateModel>, {payload}: SetLoggedIn) {
+            const emptyUser = new UserModel();
+            const emptyToken = this.setEmptyToken();
             if (!payload) {
-                const emptyToken = new TokenModel('', 'logout');
-                const emptyUser = new UserModel();
-                this.storage.setObject('azureToken', emptyToken);
+                // TODO
                 patchState({
                     currentToken: emptyToken,
                     loggedIn: true,

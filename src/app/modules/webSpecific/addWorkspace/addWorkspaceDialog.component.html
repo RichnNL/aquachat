@@ -1,40 +1,58 @@
-<mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Create Workspace
-            </mat-panel-title>
-            <mat-panel-description>
-              Create a new Workspace
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <mat-form-field>
-                <input matInput [(ngModel)]="name" placeholder="Name" >
-                <a class="aquadis_button_blue" (click)="createWorkspace()"> Create New Workspace</a> 
-        </mat-form-field>
-      
-        </mat-expansion-panel>
-
-        <mat-expansion-panel >
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Join Workspace
-            </mat-panel-title>
-            <mat-panel-description>
-              Join a Workspace
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <mat-form-field>
-                <input  matInput [(ngModel)]="search" placeholder="Search" >
-          </mat-form-field>
-            <mat-form-field>
-                        <mat-label>Select A Workspace</mat-label>
-                        <mat-select>
-                          <mat-option  matInput *ngFor="let workspace of workspaces" [value]="workspace" (click)="selectedWorkspace(workspace)">
-                            {{workspace.Name}}
-                          </mat-option>
-                        </mat-select>
+<div class="container">
+  <div class="header">
+    <h4>
+      Workspace Selection
+    </h4>
+    <img class="icon"  (click)="onCancelClick()"  src='../../../../assets/media/cross_white.png'  >
+  </div>
+  <div class="content">
+      <mat-accordion >
+          <mat-expansion-panel >
+            <mat-expansion-panel-header >
+              <mat-panel-title class="title">
+                Create A Workspace
+              </mat-panel-title>
+              <mat-panel-description>
+                
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-form-field id="input">
+                <input matInput size="35" [(ngModel)]="name" placeholder="Name" class="input" [ngStyle]="{'font-size.px': 25}" 
+                (input)="enteredValue()" >
+                <mat-hint *ngIf="!nameTaken"> {{hintMessage}} </mat-hint>
+                <small *ngIf="nameTaken" id="error">
+                    Name Taken
+                </small>
             </mat-form-field>
-        </mat-expansion-panel>
-      </mat-accordion>
+            <a *ngIf="!nameTaken && typed" class="aquadis_button_blue button" (click)="createWorkspace()"> Create Workspace</a> 
+            
+        
+          </mat-expansion-panel>
+  
+          <mat-expansion-panel >
+            <mat-expansion-panel-header>
+              <mat-panel-title class="title">
+                Join Workspace
+              </mat-panel-title>
+              <mat-panel-description>
+                
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+              <mat-label class="description" *ngIf="!workspacesAvailable">No Workspaces Available</mat-label>
+              
+              <ngx-dropdown-list *ngIf="workspacesAvailable"  (selectionChange)="selectWorkspace($event)"
+                            [items]="workspaceOptions"
+                            [placeHolder]="'Select Workspaces'"
+                            [(selectedValue)]="maxRowsLimitation"
+                            [filterBox]="true"
+                            [formatNumber]="true"
+                            [disabled]="false">
+                          </ngx-dropdown-list>
+              <a  [ngClass]="chosen ? 'aquadis_button_white buttonblue ' : 'aquadis_disabled'" class="button" (click)="join()"> Join </a> 
+          </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+  
       

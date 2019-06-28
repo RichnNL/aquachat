@@ -11,6 +11,7 @@ import { RouterHelper } from '../../shared/helpers/router/router.helper';
 import {AquachatAPIService} from '../../core/services/aquachatAPI.service';
 import { RegisterUserDetails } from '../models/RegisterUserDetailsModel';
 import * as Toast from 'nativescript-toast';
+import { AuthenticationState } from '../../shared/ngxs/state/authentication.state';
 
 @Injectable()
 export class AzureService {
@@ -27,25 +28,30 @@ export class AzureService {
         if (!loggedIn) {
             const token = new TokenModel();
             this.azureClientApplication.login(AuthenticationProvider.AzureActiveDirectory).then((user) => {
-                 user.getProviderCredentials().then((result) => {
-                    console.log(result);
-                    const resultString = JSON.stringify(result.claims);
-                    const logedInUser: UserModel = this.toUserModel(resultString);
-                    if (logedInUser) {
-                        this.storage.setObject('user', logedInUser);
-                        const experation = Number.parseInt(this.getBetweenStrings(resultString, 'exp', ','));
-                        const token = new TokenModel(user.authenticationToken, 'access', experation);
-                        this.store.dispatch(new SetAccessToken(token));
-                    }
-                });
+               this.setMobileUser(user);
             }).catch((error) => {
                token.token = '';
                token.tokenType = 'errorr';
                console.log(error + ' ERROR!');
             });
+        } else {
+              const user = this.azureClientApplication.user;
+              this.setMobileUser(user);
         }
     }
 
+    private setMobileUser(user: MobileServiceUser) {
+            user.getProviderCredentials().then((result) => {
+                const resultString = JSON.stringify(result.claims);
+                const logedInUser: UserModel = this.toUserModel(resultString);
+                if (logedInUser) {
+                    this.storage.setObject('user', logedInUser);
+                    const experation = Number.parseInt(this.getBetweenStrings(resultString, 'exp', ','));
+                    const token = new TokenModel(user.authenticationToken, 'access', experation);
+                    this.store.dispatch(new SetAccessToken(token));
+                }
+        });
+    }
 
     private getExpirationDate(): number {
         const totalLifeTimeInMiliseconds = Date.parse(new Date().toDateString()) + AzureConfiguration.id_access_token_lifetime;

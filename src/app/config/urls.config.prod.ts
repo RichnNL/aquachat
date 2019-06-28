@@ -1,8 +1,7 @@
-// const base = 'https://aquachatapi.azurewebsites.net/api/';
-const base = 'https://localhost:44332/api/';
-// const base = 'https://localhost:5001/api/';
+const base = 'https://aquachatapi.azurewebsites.net/api/';
+
 export const HTTPUrls = {
-    test: 'https://localhost:44332/api/user/test',
+ 
 
     getUsersOfChannel: base + 'channel/users',
     //  returns usersdetails list, user_id, workspace_id, channel_id

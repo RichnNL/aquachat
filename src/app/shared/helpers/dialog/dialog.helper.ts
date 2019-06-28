@@ -53,8 +53,8 @@ export class DialogHelper implements OnDestroy {
       }
 
       openWorkspaceDialog() {
-        this.dialog.open(AddWorkspaceDialogComponent, { disableClose: false, height: '300px',
-        width: '350px' });
+        this.dialog.open(AddWorkspaceDialogComponent, { disableClose: false, height: '500px',
+        width: '350px'  });
       }
 
       ngOnDestroy(): void {

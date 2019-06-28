@@ -12,3 +12,13 @@ export class ToggleWorkspaces {
     static readonly type = '[UI] Toggle Workspaces';
     constructor() {}
 }
+
+export class SetActionTitle {
+    static readonly type = '[UI] Set Title';
+    constructor(public payload: string) {}
+}
+
+export class SetPreviousTitle {
+    static readonly type = '[UI] Set Previous Title';
+    constructor() {}
+}
