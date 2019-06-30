@@ -1,0 +1,21 @@
+<div *ngIf="open && show && listNumber !== 0" class="container">
+    <p>{{title}}</p>
+    <div *ngIf="listNumber == 1" class="inner">
+        <h3 class="pointer"> Join </h3>
+        <h3 class="pointer"> Create </h3>
+    </div>
+
+        <mat-selection-list *ngIf="hasChannels && show && listNumber == 1">
+                <mat-list-option  *ngFor="let channel of channels;">
+    
+                    <app-custom-list-option (clicked)="selectChannel(channel)" [Name]="channel.Name" [Obj]="channel"></app-custom-list-option>
+                
+                </mat-list-option>
+        </mat-selection-list>
+
+        <mat-selection-list *ngIf="!hasChannels && show && listNumber == 2">
+            <mat-list-option  *ngFor="let user of users">
+                <app-custom-list-option (clicked)="selectUser(user)" [Name]="user.DisplayName" [Obj]="user"></app-custom-list-option>
+            </mat-list-option>
+    </mat-selection-list>
+</div>

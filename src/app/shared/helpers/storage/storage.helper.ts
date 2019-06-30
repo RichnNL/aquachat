@@ -22,8 +22,13 @@ export class StorageHelper {
     }
 
     getObject(name: string): any {
-        return JSON.parse(localStorage.getItem(name));
-       }
+      const obj = localStorage.getItem(name);
+      if (obj !== 'undefined') {
+        return JSON.parse(obj);
+      } else {
+        return null;
+      }
+    }
 
     getDeviceLanguage(): string {
       const local: string = this.getVariable('lang');

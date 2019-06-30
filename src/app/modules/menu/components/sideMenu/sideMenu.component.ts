@@ -75,8 +75,10 @@ export class SideMenuComponent {
  }
 
     toggleSideNav() {
-      this.store.dispatch(new ToggleSideNav());
+     this.store.dispatch(new ToggleSideNav());
     }
+
+
 
     selectedWorkspace(workspace) {
       this.store.dispatch(new SetCurrentWorkspace(workspace));

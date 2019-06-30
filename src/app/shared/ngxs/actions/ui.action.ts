@@ -22,3 +22,13 @@ export class SetPreviousTitle {
     static readonly type = '[UI] Set Previous Title';
     constructor() {}
 }
+
+export class SetIconColor {
+    static readonly type = '[UI] Set Icon Color';
+    constructor() {}
+}
+
+export class SetSideSelection {
+    static readonly type = '[UI] Set Side Selection';
+    constructor(public payload: number) {}
+}

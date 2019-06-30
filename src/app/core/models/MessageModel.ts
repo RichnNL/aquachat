@@ -7,4 +7,5 @@ export class MessageModel {
     public WorkspaceId: string;
     public ChannelId: string;
     public ChatId: string;
+    public Read: boolean;
 }

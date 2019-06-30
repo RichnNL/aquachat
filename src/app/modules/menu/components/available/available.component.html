@@ -1,8 +1,8 @@
-<div class="row available">
-        <div *ngIf="open" class="col-8">
-        <h1> {{available}} </h1>
-    </div>
-    <div [class.col-12]="open === false" [class.col-4]="open === true" class="img-container">
-            <span class="helper"></span> <img class="icon"  (click)="changeAvailable()"  src={{location}}  >
-    </div>
+<div  (click)="changeAvailable()"  class="row available container" [class.border]="open === true" [class.hoverColour]="open === false">
+        <div (mouseover)="hover=true" (mouseleave)="hover=false"  [class.col-12]="open === false" [class.col-4]="open === true" class="img-container">
+                <span class="helper"></span> <img class="icon"  src={{location}}  >
+        </div>
+        <div (mouseover)="hover=true" (mouseleave)="hover=false" *ngIf="open" class="col-8 inner" [class.hover]="hover === true">
+                <h1> {{available}} </h1>
+        </div>
 </div>

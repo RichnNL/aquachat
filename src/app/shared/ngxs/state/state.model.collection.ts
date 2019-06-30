@@ -7,6 +7,7 @@ import { OtherUserModel } from '../../../core/models/OtherUserModel';
 import { MessageModel } from '../../../core/models/MessageModel';
 import { ChatModel } from '../../../core/models/ChatModel';
 import { ChatGroupModel } from '../../models/chatGroup.model';
+import { NotificationMapModel } from '../../models/notificationMap.Model';
 
 export interface LanguageStateModel {
     currentLanguage: LanguageModel;
@@ -32,6 +33,8 @@ export interface UIStateModel {
     canGoBack: boolean;
     showWorkspaces: boolean;
     actionBarTitle: string;
+    iconColor: number;
+    sideSelection: number;
 }
 
 export interface ChatStateModel {
@@ -46,6 +49,7 @@ export interface ChatStateModel {
     cachedChatGroups: ChatGroupModel[];
     currentWorkspaceId: string;
     currentMessage: MessageModel[];
+    notificationMap: NotificationMapModel;
 }
 
 

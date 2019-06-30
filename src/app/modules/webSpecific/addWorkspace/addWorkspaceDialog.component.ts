@@ -101,6 +101,11 @@ import { UserModel } from '../../../shared/models/user.model';
             this.aquachatAPI.addSelfToWorkspace(this.userId, this.email, this.selectedWorkspace.Id).subscribe((result) => {
                 if (result.ErrorMessage.length === 0){
                     this.toast.showMessage('Joined Workspace');
+                    this.aquachatAPI.getUserDetails(this.userId, this.email).subscribe((workspacemodels) => {
+                        if (workspacemodels != null) {
+                            this.store.dispatch(new SetMyWorkSpaces(workspacemodels));
+                        }
+                    });
                 } else {
                     this.toast.showMessage('Could not add to Workspace');
                 }
@@ -112,8 +117,6 @@ import { UserModel } from '../../../shared/models/user.model';
     searchKeyDown() {
         const userId = this.store.selectSnapshot(AuthenticationState).user.UserId;
         this.aquachatAPI.getAllWorkspace(userId, this.search).subscribe(workspaces => {
-            console.log(workspaces);
-            console.log('Workspace from data');
             this.SetMyWorkSpaces(workspaces, this.userWorkspaces);
         });
     }

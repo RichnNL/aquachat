@@ -2,7 +2,11 @@
   <div [class.col-3]="open === true" [class.col-1]="open === false" [class.closed]="open === false" class="sidemenu">
     <app-sidemenu></app-sidemenu> 
   </div>
-  <div *ngIf="!noWorkspaces" class="mainContent" [class.col-8]="open === true" [class.col-11]="open === false" >
+  <div *ngIf="!noWorkspaces" class="mainContent" [class.col-8]="open === true" 
+   [class.col-xl-11]="open === false"
+   [class.col-lg-10]="open === false"
+   [class.col-md-9]="open === false"
+   [class.col-sm-8]="open === false" >
     <div class="row">
       <app-chat-tool></app-chat-tool>
     </div>

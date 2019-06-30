@@ -1,0 +1,12 @@
+<FlexboxLayout width=100% >
+    <Image (tap)="joinWorkspace()" src="res://workspace_add" class="img" stretch="aspectFit"> </Image>
+    <Label (tap)="expandWorkspace()" class="h3" color="white" marginLeft="10" text={{name}}></Label>
+    <Image (tap)="expandWorkspace()" *ngIf="canExpand" src={{locationMobile}} class="img2" stretch="fill"> </Image>
+</FlexboxLayout>
+<StackLayout *ngIf="expanded">
+        <FlexboxLayout flexDirection="column" alignContent="center" width=100% height="100" *ngFor="let workspace of filteredWorkspaces">
+                <app-custom-list-view-item (clicked)="selectWorkspace($event)" [Name]="workspace.Name" [Obj]="workspace"></app-custom-list-view-item>       
+        </FlexboxLayout> 
+</StackLayout>
+
+

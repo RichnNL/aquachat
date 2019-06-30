@@ -12,7 +12,11 @@
 .flex-side {
     height: 100%;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 10;
     background-color: $secondary-light;
+}
+
+.logoutButton {
+    
 }

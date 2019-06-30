@@ -20,12 +20,19 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ChatStatusState } from './shared/ngxs/state/chat.state';
-import { DropdownListModule } from 'ngx-dropdown-list';
+import { AvatarModule } from 'ngx-avatar';
+
+const avatarColors = ['#FFB6C1', '#2c3e50', '#95a5a6', '#f39c12', '#1abc9c'];
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    AvatarModule.forRoot(
+      {
+        colors: avatarColors
+      }
+    ),
     BrowserModule,
     FormsModule,
     HomeModule,

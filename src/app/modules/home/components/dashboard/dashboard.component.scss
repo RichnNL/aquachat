@@ -10,6 +10,9 @@
 .sidemenu {
     margin: 0;
     padding: 0;
+    transition: width 1s;
+    min-height: calc(100vh - #{$nav-bar-height}) !important;
+    height: auto;
 }
 
 .closed{
@@ -19,10 +22,10 @@
 
 .mainContent {
     background-color: $secondary-light;
-    min-height: calc(100vh - #{$nav-bar-height});
+    min-height: calc(100vh - #{$nav-bar-height}) !important;
     height: auto;
     padding: 15px;
-    margin-left: 10px
+    transition: width 1s;
 }
 
 .noworkspace {

@@ -5,7 +5,7 @@ import { Store } from '@ngxs/store';
 import { TokenModel } from '../../shared/models/token.model';
 import { StorageHelper } from '../../shared/helpers/storage/storage.helper';
 import { UserModel } from '../../shared/models/user.model';
-import { SetAccessToken } from '../../shared/ngxs/actions/authentication.action';
+import { SetAccessToken, SetUser } from '../../shared/ngxs/actions/authentication.action';
 import {AquachatAPIService} from '../../core/services/aquachatAPI.service';
 import { RegisterUserDetails } from '../models/RegisterUserDetailsModel';
 
@@ -75,7 +75,9 @@ export class AzureService {
             if (c.name) {
                 model.Firstame = c.name;
             }
-            model.UserId = c.oid.replace(/[-]+/g, '');
+            if (c.oid) {
+                model.UserId = c.oid.replace(/[-]+/g, '');
+            }
             if (c.newUser) {
                 const register = this.getRegisterUser(model);
                 if (register) {
@@ -86,7 +88,6 @@ export class AzureService {
                         } else {
                             message = respon.ErrorMessage[0];
                         }
-                        console.log(message);
                     }).catch(reason => {
                         console.log('Error Registering New User');
                     });
@@ -96,7 +97,6 @@ export class AzureService {
         } else {
             return null;
         }
- 
     }
 
     private LoggedInSuccess(token: string, callback: boolean) {
@@ -110,9 +110,6 @@ export class AzureService {
 
     public setUser(): UserModel {
         const user = this.AzureUserToUser( this.azureClientApplication.getUser());
-        if (user !== user) {
-            this.storage.setObject('user', user);
-        }
         return user;
     }
     public logOut() {
@@ -122,7 +119,12 @@ export class AzureService {
 
     public editProfile() {
         this.azureClientApplication.authority = AzureConfiguration.editPolicy;
-        this.azureClientApplication.loginRedirect();
+        this.azureClientApplication.loginPopup(AzureConfiguration.b2cScopes).then(result => {
+            const user = this.setUser();
+            this.store.dispatch(new SetUser(user));
+        }).catch(error => {
+            console.log('Edit Profile Error ' + error);
+        });
     }
 
     private getRegisterUser(user: UserModel) {

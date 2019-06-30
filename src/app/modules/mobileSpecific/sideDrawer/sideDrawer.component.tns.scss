@@ -1,0 +1,15 @@
+@import '../../../../app-variables';
+
+.flex-main {
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background-color: $secondary-light;
+}
+
+.flex {
+    flex-direction: column;
+    justify-content: flex-start;
+}

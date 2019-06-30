@@ -26,8 +26,7 @@ import { ModalDialogService } from 'nativescript-angular/modal-dialog';
 import { SelectWorkspaceModal } from './modules/mobileSpecific/modals/selectWorkspace/selectWorkspace.modal.component.tns';
 import { CreateWorkspaceModal } from './modules/mobileSpecific/modals/createWorkspace/createWorkspace.modal.component.tns';
 import { LoadingModal } from './modules/mobileSpecific/modals/loadingModal/loading.modal.tns';
-import { HideActionBarDirective } from './modules/mobileSpecific/directives/hidden.actionbar.component.tns';
-import { ActionBarDirective } from './modules/mobileSpecific/directives/actionbar.component.tns';
+import { ChatStatusState } from './shared/ngxs/state/chat.state';
 
 @NgModule({
   declarations: [
@@ -51,7 +50,8 @@ import { ActionBarDirective } from './modules/mobileSpecific/directives/actionba
       AuthenticationState,
       LanguageState,
       ApplicationStatusState,
-      UIState
+      UIState,
+      ChatStatusState
     ], { developmentMode: environment.production }),
     TranslateModule.forRoot({
       loader: {

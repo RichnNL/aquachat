@@ -1,10 +1,9 @@
 <RadSideDrawer >
-  <FlexboxLayout tkDrawerContent class="sidedrawer-content flex-side">
-      <Button text="Profile" class="btn-primary" >
+ <FlexboxLayout tkDrawerContent class="sidedrawer-content flex-side">
+      <app-side-drawer></app-side-drawer>
+      <Button text="Logout" class="btn-secondary logoutButton" (tap)="logOut()" >
       </Button>
-      <Button text="Logout" class="btn-primary" (tap)="logOut()" >
-      </Button>
-  </FlexboxLayout>
+  </FlexboxLayout>>
   <FlexboxLayout  tkMainContent class="flexbox-col flex-main">
       <page-router-outlet ></page-router-outlet>
   </FlexboxLayout>

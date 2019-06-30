@@ -34,6 +34,6 @@ export class RouterHelper {
 
     logOut() {
         this.store.dispatch(new SetCanGoBack(false));
-        this.router.navigate(['//home'], {clearHistory: true});
+        this.router.navigate(['//'], {clearHistory: true});
     }
 }

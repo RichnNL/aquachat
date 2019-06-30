@@ -1,0 +1,33 @@
+<li  class="hoverColour" *ngIf="!open" (click)="openNav()"  matTooltip="Workspace Messages"
+>
+        <span  *ngIf="!open"  class="img-container" matBadge={{workspaces}} matBadgeOverlap="true" matBadgeSize="medium"  matBadgePosition=" before">       
+                <img height="40px" width="40px"  class="icon"  src={{workspaceImageLocation}}  >  
+        </span>
+</li>
+<li  class="hoverColour" (click)="selectChannels(false)"  *ngIf="!open" matTooltip="Channel Messages"
+>
+        <span   *ngIf="!open"  class="img-container" matBadge={{channels}} matBadgeOverlap="true" matBadgeSize="medium"  matBadgePosition=" before">       
+                <img height="40px" width="40px"  class="icon"  src={{channelImageLocation}}  >  
+        </span>
+</li>
+<li *ngIf="!open" class="hoverColour" (click)="selectUsers(false)" matTooltip="Direct Messages"
+>
+        <span   *ngIf="!open"  class="img-container" matBadge={{direct}} matBadgeOverlap="true" matBadgeSize="medium"  matBadgePosition=" before">       
+                <img  height="40px" width="40px"  class="icon"  src={{messagelocation}}  >  
+        </span>
+</li>
+
+<li *ngIf="open"  class=" border">
+    <div class="notification" >
+        <div class="inner hoverColour" (click)="selectChannels(true)">
+                <span  class="img-container" matBadge={{channels}} matBadgeOverlap="true" matBadgeSize="medium"  matBadgePosition=" before">       
+                    <img height="40px" width="40px"  class="icon"  src={{channelImageLocation}}  >  
+                </span>
+        </div>
+        <div class="inner hoverColour" (click)="selectUsers(true)">
+                <span class="img-container" matBadge={{direct}} matBadgeOverlap="true" matBadgeSize="medium"  matBadgePosition=" before">       
+                    <img  height="40px" width="40px"  class="icon"  src={{messagelocation}}  >  
+                </span>
+        </div>
+    </div>
+</li>

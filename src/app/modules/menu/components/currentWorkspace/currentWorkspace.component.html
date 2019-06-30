@@ -4,7 +4,7 @@
         </div>
         
         <div class="col-2">
-            <img class="icon"  (click)="addWorkspace()"  src='../../../../assets/media/plus.svg'  >
+            <img class="icon"  (click)="addWorkspace()"  src='../../../../assets/media/workspace_add.png'  >
         </div>
         <div *ngIf="hasWorkspaces" class="col-6">
             {{currentWorkspace.Name}}
@@ -15,4 +15,14 @@
         <div *ngIf="hasWorkspaces && canExpand" class="col-2">
                 <img class="icon"  (click)="expandWorkspace()"  src={{location}}  >
         </div>
+</div>
+<div *ngIf="open && expanded && hasWorkspaces" class="search border">
+    <p>My Workspaces</p>
+        <mat-selection-list>
+                <mat-list-option (click)="selectWorkspace(workspace)" *ngFor="let workspace of filteredWorkspaces;  let i = index">
+    
+                    <app-custom-list-option (clicked)="selectWorkspace(workspace)" [Name]="workspace.Name" [Obj]="workspace"></app-custom-list-option>
+                
+                </mat-list-option>
+              </mat-selection-list>
 </div>

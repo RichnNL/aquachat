@@ -22,9 +22,8 @@ import { AquachatAPIService } from '../../../core/services/aquachatAPI.service';
 
 export class AuthenticationState implements NgxsOnInit {
     ngxsOnInit(state: StateContext<AuthenticationStateModel>) {
-        const token = this.getTokenFromDevice();
+        const token: TokenModel = this.storage.getTokenFromDevice();
         const id = this.storage.getVariable('userid');
-
         if (id) {
             if (id.length > 0) {
                 state.patchState({
@@ -34,7 +33,7 @@ export class AuthenticationState implements NgxsOnInit {
         }
         if (this.tokenIsValid(token)) {
              if (token.tokenType === 'access') {
-                 let user: UserModel = this.storage.getObject('user')
+                 let user: UserModel = this.storage.getObject('user');
                  if (user) {
                      state.patchState({
                          user: user,
@@ -43,10 +42,10 @@ export class AuthenticationState implements NgxsOnInit {
                     });
                 } else {
                     user = this.azureService.setUser();
-                    let user2: UserModel = this.storage.getObject('user');
+
+                    this.saveUserLocally(user, state.patchState);
                     if ( user !== null) {
                         state.patchState({
-                            user: user,
                             loggedIn: true,
                             currentToken: token
                        });
@@ -60,10 +59,9 @@ export class AuthenticationState implements NgxsOnInit {
               this.router.autoLogin();
             } else if (token.tokenType === 'id') {
                 const user = this.azureService.setUser();
+
                 if (user !==  null) {
-                    state.patchState({
-                        user: user
-                   });
+                    this.saveUserLocally(user, state.patchState);
                 }
                 this.azureService.setAccessToken();
            }
@@ -75,12 +73,6 @@ export class AuthenticationState implements NgxsOnInit {
     constructor(private azureService: AzureService , private router: RouterHelper, private storage: StorageHelper
         , private aquaChatHttp: AquachatAPIService ) { }
 
-    private getTokenFromDevice(): TokenModel {
-        const token = this.storage.getTokenFromDevice();
-        return token;
-    }
-
-
     private tokenIsValid(token: TokenModel): boolean {
         try {
             if (!token.token) {
@@ -91,9 +83,6 @@ export class AuthenticationState implements NgxsOnInit {
                 const expirationLength = token.expirationDate.toString().length;
                 currentDate = Number.parseInt(currentDate.toString().substring(0,expirationLength));
                 if (currentDate > token.expirationDate) {
-                    console.log(currentDate);
-                    console.log(token.expirationDate);
-                    console.log('Token is expired');
                     return false;
                 }
             }
@@ -126,6 +115,52 @@ export class AuthenticationState implements NgxsOnInit {
                 loggedIn: false
             });
         }
+    }
+
+    private saveUserLocally(user: UserModel, patchState: (val: Partial<AuthenticationStateModel>) => AuthenticationStateModel ) {
+        let savedUser: UserModel = this.storage.getObject('user');
+        if (savedUser == null) {
+            savedUser = user;
+        } else {
+            if (user.UserId != null) {
+                if (user.UserId.length > 0) {
+                    savedUser.UserId = user.UserId;
+                }
+            }
+    
+            if (user.DisplayName != null) {
+                if (user.DisplayName.length > 0) {
+                    savedUser.DisplayName = user.DisplayName;
+                }
+            }
+    
+            if (user.Email != null) {
+                if (user.Email.length > 0) {
+                    savedUser.Email = user.Email;
+                }
+            }
+    
+            if (user.Firstame != null) {
+                if (user.Firstame.length > 0) {
+                    savedUser.Firstame = user.Firstame;
+                }
+            }
+    
+            if (user.LastName != null) {
+                if (user.LastName.length > 0) {
+                    savedUser.LastName = user.LastName;
+                }
+            }
+           if (user.JobTitle != null) {
+                if (user.JobTitle.length > 0) {
+                    savedUser.JobTitle = user.JobTitle;
+                }
+            }
+        }
+        this.storage.setObject('user', user);
+        patchState({
+            user: savedUser
+        });
     }
 
     @Action(SetLoggedIn)
@@ -162,10 +197,7 @@ export class AuthenticationState implements NgxsOnInit {
 
     @Action(SetUser)
         setUser({getState, patchState}: StateContext<AuthenticationStateModel>, {payload}: SetUser) {
-            this.storage.setObject('user', payload);
-            patchState({
-                user: payload
-            });
+            this.saveUserLocally(payload, patchState);
         }
 
     @Action(SetUserId)

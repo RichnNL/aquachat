@@ -1,0 +1,8 @@
+<FlexboxLayout class="container">
+    <app-notification-image [ImageLocation]="'res://channel_blue'" [Count]="channels"
+    [Size]="55" [Background]="'gray'" (clicked)="selectChannels(true)"> </app-notification-image>
+
+    <app-notification-image [ImageLocation]="'res://user_blue'" [Count]="direct"
+    [Size]="55" [Background]="'gray'" (clicked)="selectUsers(true)"> </app-notification-image>
+</FlexboxLayout>
+

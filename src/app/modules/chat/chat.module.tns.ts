@@ -10,23 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 @NgModule({
     declarations: [
-        ChatSelectComponent,
         ChatToolComponent,
-        ChatSMSComponent,
-        ChatSendComponent,
-        ChatBoxComponent,
-        ChatNotificationComponent
     ],
     imports: [
         FormsModule,
         CommonModule,
     ],
-    exports: [ChatSelectComponent,
-        ChatSendComponent,
-        ChatBoxComponent,
+    exports: [
         ChatToolComponent,
-        ChatNotificationComponent,
-        ChatSMSComponent,],
+        ],
     providers: [],
     bootstrap: []
   })

@@ -6,6 +6,8 @@ import { AquachatAPIService } from '../../../core/services/aquachatAPI.service';
 import { OtherUserModel } from '../../../core/models/OtherUserModel';
 import { StorageHelper } from '../../helpers/storage/storage.helper';
 import { ChatGroupModel } from '../../models/chatGroup.model';
+import { MessageModel } from '../../../core/models/MessageModel';
+import { NotificationMapModel } from '../../models/notificationMap.Model';
 
 
 
@@ -15,14 +17,15 @@ import { ChatGroupModel } from '../../models/chatGroup.model';
         currentWorkspace: null,
         currentChannelId: '',
         myWorkspaces: [],
-        available: 1,
+        available: -1,
         selectedUsers: [],
         currentMessages: [],
         currentChatId: null,
         currentChat: null,
         cachedChatGroups: null,
         currentWorkspaceId: null,
-        currentMessage: null
+        currentMessage: null,
+        notificationMap: null
     }
 })
 
@@ -30,15 +33,24 @@ import { ChatGroupModel } from '../../models/chatGroup.model';
 export class ChatStatusState implements NgxsOnInit {
 
     constructor(private webAPI: AquachatAPIService, private storage: StorageHelper) {}
-
+    private allMessages: MessageModel[];
     ngxsOnInit(state: StateContext<ChatStateModel>) {
        const chats: ChatGroupModel[] = this.storage.getObject('chats');
-
+       this.allMessages = this.storage.getObject('messages');
        if (chats !== null) {
            state.patchState({
             cachedChatGroups: chats
            });
        }
+
+       const notificationMap = new NotificationMapModel();
+       notificationMap.totalChannel = 3;
+       notificationMap.totalDirect = 10;
+       notificationMap.totalWorkspace = 2;
+
+       state.patchState({
+        notificationMap: notificationMap
+       });
     }
 
 
@@ -86,8 +98,9 @@ export class ChatStatusState implements NgxsOnInit {
         @Action(ClickedAvailable)
         availableClicked({getState, patchState}: StateContext<ChatStateModel>, {}: ClickedAvailable) {
             let a = getState().available;
-            a = a + 1;
-            if (a > 2) {
+            if ( a === -1 || a === 1) {
+                a = 2;
+            } else {
                 a = 1;
             }
             patchState({

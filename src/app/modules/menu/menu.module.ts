@@ -8,6 +8,10 @@ import { CurrentWorkspaceComponent } from './components/currentWorkspace/current
 import { MaterialModule } from '../webSpecific/material.module';
 import { ChatModule } from '../chat/chat.module';
 import { SelectListComponent } from './components/selectList/selectList.component';
+import { AvatarModule } from 'ngx-avatar';
+import { NotificationComponent } from './components/notification/notification.component';
+import { DropdownListModule } from 'ngx-dropdown-list';
+import { WebSpecificModule } from '../webSpecific/webSpecific.module';
 
 @NgModule({
     declarations: [
@@ -15,18 +19,24 @@ import { SelectListComponent } from './components/selectList/selectList.componen
         ProfileIconComponent,
         AvailableComponent,
         CurrentWorkspaceComponent,
-        SelectListComponent
+        SelectListComponent,
+        NotificationComponent
     ],
     imports: [
+        DropdownListModule,
         FormsModule,
         CommonModule,
         MaterialModule,
-        ChatModule
+        ChatModule,
+        AvatarModule,
+        WebSpecificModule
     ],
-    exports: [SideMenuComponent,
+    exports: [
+        SideMenuComponent,
+        NotificationComponent,
         CurrentWorkspaceComponent,
-    ProfileIconComponent,
-    AvailableComponent  ],
+        ProfileIconComponent,
+        AvailableComponent  ],
     providers: [],
     bootstrap: []
   })

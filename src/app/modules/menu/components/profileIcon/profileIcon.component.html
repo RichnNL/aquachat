@@ -1,6 +1,6 @@
     <div class="row">
-        <div *ngIf="open">
-            <img class="icon"  (click)="editProfile()"  src={{location}}  >
+        <div *ngIf="open" class="centre">
+            <ngx-avatar size="70" fgColor={{fgColor}} bgColor={{bgColor}} class="icon" (click)="editProfile()" name={{displayName}} ></ngx-avatar>
         </div>
         <div *ngIf="open">
             

@@ -4,9 +4,22 @@
 .icon {
     height: 70px;
     width: 70px;
+    cursor: pointer;
 }
 
 .background {
     background: rgb(57,57,57);
 background: linear-gradient(153deg, rgba(57,57,57,1) 14%, rgba(161,160,160,1) 88%, rgba(161,160,160,1) 100%); 
 }
+
+.centre {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.title {
+    margin-right: 5px;
+}
+
+

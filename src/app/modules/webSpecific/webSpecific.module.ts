@@ -10,18 +10,20 @@ import { HttpLoaderFactory } from '../../../app/config/language.config';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AddWorkspaceDialogComponent } from './addWorkspace/addWorkspaceDialog.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler/src/core';
 import { DropdownListModule } from 'ngx-dropdown-list';
-
+import { CustomListOptionComponent } from './custom-list-option/custom-list-option.component';
+import { AvatarModule } from 'ngx-avatar';
 @NgModule({
     declarations: [
         LoadingDialogComponent,
         ErrorDialogComponent,
         NavigationComponent,
         LanguageSelectorComponent,
-        AddWorkspaceDialogComponent
+        AddWorkspaceDialogComponent,
+        CustomListOptionComponent
     ],
     imports: [MaterialModule,
+        AvatarModule,
         DropdownListModule,
         FormsModule,
          CommonModule,
@@ -37,6 +39,7 @@ import { DropdownListModule } from 'ngx-dropdown-list';
         ErrorDialogComponent,
         NavigationComponent,
         AddWorkspaceDialogComponent,
+        CustomListOptionComponent,
         LanguageSelectorComponent],
     providers: [],
     bootstrap: [],

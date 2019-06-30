@@ -1,0 +1,15 @@
+<StackLayout *ngIf="listNumber !== 0">
+    <Label color="white" [text]="title"> </Label>
+    <StackLayout  *ngIf="listNumber == 1" >
+    <FlexboxLayout flexDirection="column" alignContent="center" width=100% height="100" *ngFor="let channel of channels">
+            <app-custom-list-view-item (clicked)="selectChannel($event)" [Name]="channel.Name" [Obj]="channel"></app-custom-list-view-item>       
+    </FlexboxLayout> 
+    </StackLayout>
+
+    <StackLayout  *ngIf="listNumber == 2" >
+            <FlexboxLayout flexDirection="column" alignContent="center" width=100% height="100" *ngFor="let user of users">
+                    <app-custom-list-view-item (clicked)="selectUser($event)" [Name]="user.DisplayName" [Obj]="user"></app-custom-list-view-item>       
+            </FlexboxLayout> 
+    </StackLayout>
+   
+</StackLayout>

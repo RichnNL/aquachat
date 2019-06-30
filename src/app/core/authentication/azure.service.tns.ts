@@ -64,7 +64,9 @@ export class AzureService {
     }
 
     public setAccessToken() { return; }
-    public editProfile() {}
+    public editProfile() {
+        
+    }
     public setUser(): UserModel {return new UserModel();}
 
     private getBetweenStrings( text: string, textFrom: string, textTo: string): string {

@@ -4,6 +4,10 @@ import {RadSideDrawerComponent} from 'nativescript-ui-sidedrawer/angular/side-dr
 import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { SetLoggedIn } from './shared/ngxs/actions/authentication.action';
+import { AuthenticationState } from './shared/ngxs/state/authentication.state';
+import { SetMyWorkSpaces } from './shared/ngxs/actions/chat.action';
+import { AquachatAPIService } from './core/services/aquachatAPI.service';
+import { UserModel } from './shared/models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +17,7 @@ import { SetLoggedIn } from './shared/ngxs/actions/authentication.action';
 export class AppComponent implements OnInit, AfterViewInit {
     @ViewChild(RadSideDrawerComponent) drawercomponent: RadSideDrawerComponent;
     @Select(state => state.UIState.sideNavOpen) sideOpen$: Observable<boolean>;
+
     sideOpen = false;
     ngAfterViewInit(): void {
         this.changeDetection.detectChanges();
@@ -26,10 +31,12 @@ export class AppComponent implements OnInit, AfterViewInit {
         });
     }
 
-    constructor(private dialogHelper: DialogHelper, private store: Store, private changeDetection: ChangeDetectorRef) { }
+    constructor(private webAPI: AquachatAPIService, private dialogHelper: DialogHelper,
+         private store: Store, private changeDetection: ChangeDetectorRef) {
+      
+     }
 
     logOut() {
-        console.log('login called');
         this.store.dispatch(new SetLoggedIn(false));
     }
 }

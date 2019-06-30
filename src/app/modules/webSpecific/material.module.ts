@@ -12,10 +12,14 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatTooltipModule} from '@angular/material/tooltip'; 
 @NgModule({
     declarations: [
     ],
     imports: [
+        MatTooltipModule,
+        MatBadgeModule,
         ScrollingModule,
         MatExpansionModule,
         MatStepperModule,
@@ -31,6 +35,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
         MatSnackBarModule
     ],
     exports: [
+        MatTooltipModule,
+        MatBadgeModule,
         ScrollingModule,
         MatExpansionModule,
         MatStepperModule,

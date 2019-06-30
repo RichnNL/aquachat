@@ -3,7 +3,7 @@
 
 .mat-drawer-container {
   @include setFullScreen;
-  min-width: 350px;
+  min-width: 400px !important;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#05242b+0,05242b+36,59818c+87,59818c+99 */
   background: #05242b; /* Old browsers */
   background: -moz-linear-gradient(top, #05242b 0%, #05242b 36%, #59818c 87%, #59818c 99%); /* FF3.6-15 */

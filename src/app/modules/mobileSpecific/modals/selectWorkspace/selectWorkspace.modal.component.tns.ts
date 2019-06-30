@@ -49,7 +49,6 @@ export class SelectWorkspaceModal implements OnInit {
     ngOnInit() {
 
         this.webAPI.getAllWorkspace(this.userId, ' ').subscribe(result => {
-            console.log(this.userId);
                    this.SetMyWorkSpaces(result, this.userWorkspaces);
            });
        }
@@ -60,7 +59,7 @@ export class SelectWorkspaceModal implements OnInit {
 
     onitemselected(args) {
         if (args.selected != null) {
-            console.log(args.selected);
+
             this.selectedWorkspace = args.selected;
             this.selected = true;
         } else {
@@ -83,17 +82,29 @@ export class SelectWorkspaceModal implements OnInit {
                 }
             });
             const filteredSelect = new FilteredDropDown();
+            console.log(this.workspaces);
             filteredSelect.setItemsByWorkspaces(this.workspaces);
             this.items = filteredSelect.getItems();
-            this.items = [{name: 'Aquachat', code: '28478hu'}];
+            console.log(this.items);
         } else {
             this.workspacesAvailable = false;
         }
     }
 
     selectWorkspace() {
+        console.log(this.selectedWorkspace);
             this.webAPI.addSelfToWorkspace(this.userId, this.email, this.selectedWorkspace.code).subscribe(result => {
-                this.toast.showMessage('Joined ' + this.selectedWorkspace.name);
+                if (result.ErrorMessage.length === 0){
+                    this.toast.showMessage('Joined ' + this.selectedWorkspace.name);
+                    this.webAPI.getUserDetails(this.userId, this.email).subscribe((workspacemodels) => {
+                        if (workspacemodels != null) {
+                            this.store.dispatch(new SetMyWorkSpaces(workspacemodels));
+                        }
+                    });
+                 } else {
+                    this.toast.showMessage(result.ErrorMessage[0]);
+                 }
+
                 this.onClose();
             });
 

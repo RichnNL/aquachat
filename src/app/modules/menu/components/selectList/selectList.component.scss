@@ -1,0 +1,14 @@
+.container {
+display: flex;
+flex-direction: column;
+}
+
+.inner {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.pointer {
+    cursor: pointer;
+}

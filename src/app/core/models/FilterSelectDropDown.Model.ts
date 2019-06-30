@@ -4,8 +4,8 @@ export class Item  {
     code: string;
     name: string;
     constructor(id: string, value: string, text: string) {
-        this.code = id;
-        this.name = value;
+        this.name = text;
+        this.code = value;
     }
 }
 
@@ -30,8 +30,7 @@ export class FilteredDropDown {
     setItemsByWorkspaces(workspaces: Workspace[]) {
         const itemList = Array<Item>();
         for (let i = 0; i < workspaces.length; i++) {
-            const index = (i + 1).toString();
-            const tempItem = new Item(index, workspaces[i].Id, workspaces[i].Name );
+            const tempItem = new Item(workspaces[i].Id, workspaces[i].Id, workspaces[i].Name );
             itemList.push(tempItem);
         }
         this.items = new Items(itemList);

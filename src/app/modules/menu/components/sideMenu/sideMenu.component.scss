@@ -15,26 +15,29 @@
     padding: 0;
     text-transform: capitalize;
     margin: 0;
+    height: auto;
     & li {
         padding: 0;
         margin: 0;
         text-decoration: none;
         color: $light-light;
         font-family: $medium_font;
-        font-size: 1.5rem;
+        font-size: 1rem;
         text-align: center;
         overflow: hidden;
-
-        & :hover {
-            background-color: $primary-light;
-        }
     }
 }
 
 .top {
 background: rgb(57,57,57);
 background: linear-gradient(153deg, rgba(57,57,57,1) 14%, rgba(161,160,160,1) 88%, rgba(161,160,160,1) 100%); 
+
 }
+
+.pointer {
+    cursor: pointer;
+}
+
 
 .topclosed {
     text-align: center ;
@@ -56,12 +59,14 @@ background: linear-gradient(153deg, rgba(57,57,57,1) 14%, rgba(161,160,160,1) 88
     height: 25px;
     width: 30px;
     margin-top: 3px;
-    cursor: pointer; 
+    
+    & :hover {
+        background-color: $secondary-light !important;
+    } 
 }
-.hightlight {
-    &:hover {
-        color: $secondary-light
-      }
+
+.hightlight :hover {
+    background-color: $secondary-light
 }
 
 .workspace {
@@ -75,3 +80,4 @@ background: linear-gradient(153deg, rgba(57,57,57,1) 14%, rgba(161,160,160,1) 88
 .workspace img {
     align-self: flex-start !important;
 }
+

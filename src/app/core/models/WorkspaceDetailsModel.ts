@@ -12,4 +12,5 @@ export class WorkspaceDetailsModel {
     public  Users: WorkspaceUserModel[];
 
     public Channels: ChannelDetailsModel[] ;
+    
 }

@@ -1,0 +1,77 @@
+@import '../../../../../scss/global/styles.scss';
+@include gridview;
+.icon {
+    display: inline-block;
+    align-self: center;
+    justify-self: flex-end;
+    vertical-align: middle;
+    
+}
+
+
+@include tablet {
+    .icon {
+        padding: 0px;
+        margin: 0px;
+        height: 30px !important;
+        width: 30px !important;
+    }
+
+    .notification {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+
+    
+ }
+
+.notification {
+    padding: 0;
+    margin : 0;
+    width: 100%;
+    height: 55px;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 10%;
+    margin-right: 15%;
+    cursor: pointer;
+}
+
+.border {
+    border-bottom: 1px solid white;
+    min-width: 85px !important;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.hover h1{
+    color: $primary-light;
+}
+
+.hoverColour :hover {
+    background-color: $primary-light;
+}
+.img-container {
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    top: 9px !important;
+    left: 8px !important;
+    cursor: pointer;
+}
+
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.inner {
+    width: 80px;
+}
+
+
