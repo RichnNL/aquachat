@@ -52,8 +52,6 @@ export class NotificationComponent {
         this.store.dispatch(new ToggleSideNav());
     }
 
-    test() {
-        console.log('testing 123');
-    }
+  
 
 }

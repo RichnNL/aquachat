@@ -1,13 +1,13 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import {UserDisplayModel} from '../../../core/models/UserDisplay.Model';
-import {UIColorModel} from '../../../core/models/UIColor.Model';
+import {UserDisplayModel} from '../../../../core/models/UserDisplay.Model';
+import {UIColorModel} from '../../../../core/models/UIColor.Model';
 @Component({
-    selector: 'app-custom-list-view-item',
-    templateUrl: './listViewItem.component.html',
-    styleUrls: ['./listViewItem.component.scss'],
+    selector: 'app-message-item',
+    templateUrl: './messageItem.component.html',
+    styleUrls: ['./messageItem.component.scss'],
     moduleId: module.id })
 // tslint:disable-next-line:component-class-suffix
-export class CustomListViewItemComponent implements OnInit {
+export class MessageItemComponent implements OnInit {
   
   @Input() Name: string;
   @Input() Obj: any;

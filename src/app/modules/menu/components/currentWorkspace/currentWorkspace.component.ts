@@ -36,7 +36,6 @@ export class CurrentWorkspaceComponent {
     });
 
     this.workspaces$.subscribe((workspaces) => {
-      console.log(workspaces);
       if (workspaces != null) {
         if (workspaces.length > 0) {
           this.hasWorkspaces = true;

@@ -1,4 +1,9 @@
 .container {
     display: flex;
     justify-content: space-around;
+    align-items: center;
+}
+
+.margin {
+    margin-left: 5px;
 }

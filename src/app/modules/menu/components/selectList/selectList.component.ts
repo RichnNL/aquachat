@@ -5,7 +5,7 @@ import { UserModel } from '../../../../shared/models/user.model';
 import { WorkspaceDetailsModel } from '../../../../core/models/WorkspaceDetailsModel';
 import { ChannelDetailsModel } from '../../../../core/models/ChannelDetailsModel';
 import { WorkspaceUserModel } from '../../../../core/models/WorkspaceUserModel';
-import { SetChannelId, AddUserToChat } from '../../../../shared/ngxs/actions/chat.action';
+import { SetChannelId, AddUserToChat, ClearChat } from '../../../../shared/ngxs/actions/chat.action';
 import { OtherUserModel } from '../../../../core/models/OtherUserModel';
 import { ToggleSideNav } from '../../../../shared/ngxs/actions/ui.action';
 
@@ -77,6 +77,7 @@ export class SelectListComponent {
     selectUser(user: WorkspaceUserModel) {
      const otherUserModel = new OtherUserModel();
      otherUserModel.setByWorkspaceUserModel(user);
+     this.store.dispatch(new ClearChat());
      this.store.dispatch(new AddUserToChat(otherUserModel));
      this.store.dispatch(new ToggleSideNav());
     }

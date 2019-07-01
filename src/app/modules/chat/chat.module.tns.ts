@@ -8,9 +8,14 @@ import { ChatBoxComponent } from './components/chat-box/chat-box.component';
 import { ChatNotificationComponent } from './components/chat-notification/chat-notification.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MenuModule } from '../menu/menu.module.tns';
+import { MessageItemComponent } from './components/messageItem/messageItem.component.tns';
+import { HeaderItemComponent } from './components/headerItem/headerItem.component.tns';
 @NgModule({
     declarations: [
         ChatToolComponent,
+        MessageItemComponent,
+        HeaderItemComponent,
     ],
     imports: [
         FormsModule,
@@ -18,6 +23,8 @@ import { CommonModule } from '@angular/common';
     ],
     exports: [
         ChatToolComponent,
+        MessageItemComponent,
+        HeaderItemComponent,
         ],
     providers: [],
     bootstrap: []

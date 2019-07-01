@@ -82,17 +82,15 @@ export class SelectWorkspaceModal implements OnInit {
                 }
             });
             const filteredSelect = new FilteredDropDown();
-            console.log(this.workspaces);
+
             filteredSelect.setItemsByWorkspaces(this.workspaces);
             this.items = filteredSelect.getItems();
-            console.log(this.items);
         } else {
             this.workspacesAvailable = false;
         }
     }
 
     selectWorkspace() {
-        console.log(this.selectedWorkspace);
             this.webAPI.addSelfToWorkspace(this.userId, this.email, this.selectedWorkspace.code).subscribe(result => {
                 if (result.ErrorMessage.length === 0){
                     this.toast.showMessage('Joined ' + this.selectedWorkspace.name);

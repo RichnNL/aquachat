@@ -1,7 +1,12 @@
+<StackLayout *ngIf="!noWorkspaces" class="main" action-bar>
+        <app-chat-tool></app-chat-tool>
+</StackLayout>
+
 <FlexboxLayout *ngIf="noWorkspaces" class="container" action-bar >
     <Label class="h4" text="You have no workspaces"></Label>
     <Button class="btn-main button" (tap)="showCreate()" text="Create Workspace"> </Button>
 
     <Button class="btn-secondary button" (tap)="showJoin()" text="Join A Workspace"> </Button>
 </FlexboxLayout>
+
 

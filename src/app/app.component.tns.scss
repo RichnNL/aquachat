@@ -3,8 +3,8 @@
 .flex-main {
     height: 100%;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     padding: 0;
     background-color: $secondary-light;
 }

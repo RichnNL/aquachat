@@ -13,3 +13,11 @@
 .button {
     margin: 5;
 }
+
+.main {
+    flex-direction: column;
+    justify-content: flex-start;
+    justify-self: flex-start;
+    background-color: $secondary-light;
+    height: 100%;
+}
