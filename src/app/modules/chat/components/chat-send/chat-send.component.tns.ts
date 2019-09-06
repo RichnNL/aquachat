@@ -1,14 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SignalRService } from '../../../../core/services/signalR.service';
+// import { SignalRService } from '../../../../core/services/signalR.service';
 import { MessageModel } from '../../../../core/models/MessageModel';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { UserModel } from '../../../../shared/models/user.model';
-import { TextField } from 'nativescript-material-textfield';
-import { WorkspaceDetailsModel } from '../../../../core/models/WorkspaceDetailsModel';
+import { registerElement } from 'nativescript-angular/element-registry';
 import { AquachatAPIService } from '../../../../core/services/aquachatAPI.service';
+import {TextField} from 'tns-core-modules/ui/text-field';
 import { SetMessages } from '../../../../shared/ngxs/actions/chat.action';
-
+import { WorkspaceDetailsModel } from '../../../../core/models/WorkspaceDetailsModel';
 @Component({
   selector: 'app-chat-send',
   templateUrl: './chat-send.component.html',
@@ -26,11 +26,10 @@ export class ChatSendComponent {
   userId: string;
   email: string[];
   chatid;
-
   isWorkspace: boolean;
   isDirect: boolean;
   sub: Subscription;
-  constructor(private signalr: SignalRService, private webAPI: AquachatAPIService, private store: Store) {
+  constructor(private webAPI: AquachatAPIService, private store: Store) {
     this.user$.subscribe(user => {
       if (user && user.UserId.length > 0 && user.UserId !== 'undefined') {
         this.userId = user.UserId;
@@ -99,28 +98,45 @@ export class ChatSendComponent {
   ngOnInit() {}
 
   sendMessage() {
+    console.log(this.value);
     if (this.value && this.value.length > 0) {
       const payload = this.value;
-      this.value = '';
       const messageModel = new MessageModel();
       messageModel.Type = 'text';
       messageModel.SenderID = this.userId;
       messageModel.SenderEmail = this.email[0];
       messageModel.Payload = payload;
+      
       if (this.isWorkspace) {
         messageModel.WorkspaceId = this.chatid;
-        messageModel.ChatId = '';
         messageModel.ChannelId = '';
+        messageModel.ChatId = '';
       } else {
         messageModel.ChatId = this.chatid;
         messageModel.WorkspaceId = '';
         messageModel.ChannelId = '';
       }
-     this.signalr.sendMessage(messageModel);
-     
-    }
-    
+      this.webAPI.sendMessage(messageModel).subscribe(() => {
+        if (this.isWorkspace) {
+          this.webAPI.getWorkspaceMessages(this.userId, this.chatid).subscribe((result) => {
+            this.store.dispatch(new SetMessages(result));
+          });
+        } else {
+          this.webAPI.getDirectMessage(this.userId, this.chatid).subscribe((result) => {
+            console.log(result);
+            this.store.dispatch(new SetMessages(result));
+          });
+        }
+      }
 
+      );
+      this.value = '';
+    }
+
+  }
+
+  type(text: string) {
+    this.value = text;
   }
 
   private getMessage() {
@@ -135,4 +151,5 @@ export class ChatSendComponent {
       });
   }
 }
+
 }

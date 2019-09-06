@@ -13,7 +13,20 @@
 
 
   .item {
-    height: 50px;
+    display: flex;
+  }
+
+
+  .left {
+    display: flex;
+    justify-content: flex-start !important;
+    width: 100%
+  }
+
+  .right {
+    display: flex;
+    justify-content: flex-end !important;
+    width: 100%;
   }
 
 

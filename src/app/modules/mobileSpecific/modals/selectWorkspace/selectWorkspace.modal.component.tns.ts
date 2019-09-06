@@ -92,7 +92,7 @@ export class SelectWorkspaceModal implements OnInit {
 
     selectWorkspace() {
             this.webAPI.addSelfToWorkspace(this.userId, this.email, this.selectedWorkspace.code).subscribe(result => {
-                if (result.ErrorMessage.length === 0){
+                if (result.ErrorMessage.length === 0) {
                     this.toast.showMessage('Joined ' + this.selectedWorkspace.name);
                     this.webAPI.getUserDetails(this.userId, this.email).subscribe((workspacemodels) => {
                         if (workspacemodels != null) {

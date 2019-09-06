@@ -6,9 +6,10 @@ import { AquachatAPIService } from '../../../../core/services/aquachatAPI.servic
 import { UserModel } from '../../../../shared/models/user.model';
 import { MessageModel } from '../../../../core/models/MessageModel';
 import { ChatStateModel } from '../../../../shared/ngxs/state/state.model.collection';
-import { SetChatId, SetGroupChat } from '../../../../shared/ngxs/actions/chat.action';
+import { SetChatId, SetGroupChat, SetMessages } from '../../../../shared/ngxs/actions/chat.action';
 import { ChatGroupModel } from '../../../../shared/models/chatGroup.model';
 import { ChatStatusState } from '../../../../shared/ngxs/state/chat.state';
+import { SignalRService } from '../../../../core/services/signalR.service';
 
 
 @Component({
@@ -22,13 +23,14 @@ export class ChatBoxComponent {
   @Select(state => state.ChatState.currentChannelId) channel$: Observable<string>;
   @Select(state => state.ChatState.currentWorkspaceId) workspace$: Observable<string>;
   @Select(state => state.AuthenticationState.user) user$: Observable<UserModel>;
-
+  @Select(state => state.ChatState.currentMessages) currentMessages$: Observable<string>;
   user: UserModel;
-  messages: MessageModel[];
-  constructor(private store: Store, private webapi: AquachatAPIService) {
+  email: string;
+  constructor(private store: Store, private webapi: AquachatAPIService, private signalR: SignalRService) {
       this.user$.subscribe(user => {
         if (user && user.UserId.length > 0 && user.UserId !== 'undefined') {
           this.user = user;
+          this.email = user.Email;
         }
       });
 
@@ -36,7 +38,11 @@ export class ChatBoxComponent {
         if (chatId !== null) {
           if (chatId.length > 0) {
             this.webapi.getDirectMessage(this.user.UserId, chatId).subscribe((messages) => {
-              this.messages = messages;
+              if (messages != null) {
+              
+             this.store.dispatch(new SetMessages(messages));
+                
+              }
             });
           } else if (chatId.length === 0) {
             const users = this.store.selectSnapshot(ChatStatusState).selectedUsers;
@@ -57,6 +63,20 @@ export class ChatBoxComponent {
           }
         }
       });
+
+      this.workspace$.subscribe(result => {
+        if (result !== null) {
+          if (result.length > 0) {
+            this.webapi.getWorkspaceMessages(this.user.UserId, result).subscribe((messages) => {
+              if (messages != null) {
+                
+                  this.store.dispatch(new SetMessages(messages));
+                
+              }
+             });
+           }
+          }
+        });
    }
 
   isUser(email: string): boolean {

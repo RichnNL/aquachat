@@ -101,9 +101,16 @@ export class AzureService {
 
     private LoggedInSuccess(token: string, callback: boolean) {
         const accessToken = new TokenModel(token, 'access', this.getExpirationDate());
+        const user = this.setUser();
         if (callback) {
             this.storage.setObject('azureToken', accessToken);
+            if (user != null) {
+                this.store.dispatch(new SetUser(user));
+            }
         } else {
+            if (user != null) {
+                this.store.dispatch(new SetUser(user));
+            }
             this.store.dispatch(new SetAccessToken(accessToken));
         }
     }

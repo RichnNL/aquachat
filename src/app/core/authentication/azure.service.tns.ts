@@ -49,6 +49,7 @@ export class AzureService {
                     const experation = Number.parseInt(this.getBetweenStrings(resultString, 'exp', ','));
                     const token = new TokenModel(user.authenticationToken, 'access', experation);
                     this.store.dispatch(new SetAccessToken(token));
+                    this.store.dispatch(new SetUser(logedInUser));
                 }
         });
     }

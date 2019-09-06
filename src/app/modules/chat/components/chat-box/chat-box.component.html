@@ -1,17 +1,8 @@
-<cdk-virtual-scroll-viewport itemSize="20" class="container">
-   <mat-list>
-        <mat-list-item  *cdkVirtualFor="let message of messages" class="item">                                                   
-           <app-chat-sms [message]="message"></app-chat-sms>
-           <!-- <div class="chat">
-                  {{message.SenderEmail}}
-                  <div class='row'>
-                        <div class="col-12">
-                                {{message.Payload}}  
-                        </div>
-                  </div>
-                    
-            </div> -->
-           </mat-list-item>
-     </mat-list>
+<cdk-virtual-scroll-viewport itemSize="60" class="container">
+        <div *cdkVirtualFor="let message of currentMessages$ | async" class="item">    
+              <div [class.left]="message.SenderEmail !== email" [class.right]="message.SenderEmail === email" >
+                  <app-chat-sms [message]="message"></app-chat-sms>
+              </div>  
+        </div>                                             
 </cdk-virtual-scroll-viewport>
       

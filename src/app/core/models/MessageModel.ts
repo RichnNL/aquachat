@@ -8,4 +8,5 @@ export class MessageModel {
     public ChannelId: string;
     public ChatId: string;
     public Read: boolean;
+
 }

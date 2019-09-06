@@ -1,1 +1,18 @@
 @import '../../../../../app-variables';
+
+.outer {
+    justify-content: space-around;
+}
+
+.inner {
+    flex-direction: column;
+
+}
+
+.top {
+    font-size: 8;
+}
+
+.bottom {
+    font-size: 5;
+}

@@ -11,27 +11,17 @@ export class MessageItemComponent implements OnInit {
   
   @Input() Name: string;
   @Input() Obj: any;
-  @Output() clicked = new EventEmitter();
-  bgColor;
-  fgColor;
+  @Input() Payload: string;
+  bgColor = 'blue';
+  fgColor = 'white';
   colors = new UIColorModel();
   initials: string;
   constructor() {
   }
 
   ngOnInit(): void {
-    console.log(this.Name);
     const display = new UserDisplayModel();
     display.setDisplayName(this.Name);
         this.initials = display.initials;
-        const index = Math.floor((Math.random() * 10) + 1);
-        this.fgColor = this.colors.fgColor[index];
-        this.bgColor = this.colors.bgColor[index];
   }
-
-
-
-    itemClicked() {
-        this.clicked.emit(this.Obj);
-    }
 }

@@ -1,0 +1,21 @@
+@import '../../../../../app-variables';
+
+.container {
+    justify-content: space-between;
+    background-color: $secondary-light;
+    width: 100%;
+    height: 12%;
+    align-items: center;
+    display: flex;
+    border-radius: 44px;
+}
+
+.img {
+    justify-self: flex-end;
+    width: 120;
+    height: 110;
+}
+
+.input {
+    width: 70%;
+}

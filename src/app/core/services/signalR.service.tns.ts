@@ -1,43 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { UserModel } from '../../shared/models/user.model';
 import { MessageModel } from '../models/MessageModel';
 import { AquachatAPIService } from './aquachatAPI.service';
-import * as signalR from '@aspnet/signalr';
 import {HubConnectionName} from '../../config/signalR.config';
-import { AddMessage } from '../../shared/ngxs/actions/chat.action';
+
+
 @Injectable()
 export class SignalRService {
-    connection: signalR.HubConnection;
+    connection: any;
     userId: string;
     emails: string[];
 
     isConnected = false;
     @Select(state => state.AuthenticationState.user) user$: Observable<UserModel>;
-    constructor(private webAPI: AquachatAPIService, private store: Store) {
+    constructor(private webAPI: AquachatAPIService,
+        ) {
         this.user$.subscribe(user => {
             if (user && user.UserId.length > 0 && user.UserId !== 'undefined') {
               this.userId = user.UserId;
               this.emails = [user.Email];
             }
           });
-        this.connection = new signalR.HubConnectionBuilder()
-                            .withUrl(HubConnectionName,
-                            {
-                                skipNegotiation: true,
-                                    transport: signalR.HttpTransportType.WebSockets
-                            })
-                            .build();
-        this.connection
-      .start()
-      .then(() => {
-          console.log('Connection started');
-          this.connectionComplete();
-          this.isConnected = true;
-         })
-      .catch(err => console.log('Error while starting connection: ' + err));
+        //   this.connection  =  new SignalrCore();
+        //   this.connection.start('https://aquachatapi.azurewebsites.net/chat').then(() => {
+        //   console.log('Connected To Signal R');
+        //   this.zone.run(() => {
+        //     this.cd.detectChanges();
+        //     this.connectionComplete();
+    //     //     this.isConnected = true;
+    // });
+    //       }).catch(error => {
+    //           console.log(error);
+    //       });
     }
+
 
     private connectionComplete() {
         if (this.connection) {
@@ -53,9 +51,7 @@ export class SignalRService {
 
     public sendMessage(message: MessageModel) {
         if (this.isConnected) {
-            this.connection.invoke('sendMessage', message ).then(result => {
-                this.store.dispatch(new AddMessage(message));
-            }).catch(error => {
+            this.connection.invoke('sendMessage', message ).catch(error => {
                 console.log(error);
                 this.webAPI.sendMessage(message);
             });
@@ -72,7 +68,6 @@ export class SignalRService {
         this.connection.on('ON_MESSAGE_RECEIVED', (data) => {
             const message: MessageModel = data;
             console.log('message');
-            this.store.dispatch(new AddMessage(message));
         });
     }
 

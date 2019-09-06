@@ -5,17 +5,27 @@
 
 
 .chat {
-    width: 100px;
-    height: 50px;
+    width: 100%;
+    height: auto;
     background-color: $secondary-light;
-    margin-top: 15px;
-    border-radius: 60px;
+    padding-top: 10px;
+    border-radius: 30px;
+    display: flex;
 }
 
-.left {
-align-items: flex-start;
+.sideChat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
 }
 
-.right {
-    align-self: flex-end;
+.border {
+    border-bottom: 1px solid white;
+}
+
+.f {
+    font-size: 1.5rem !important;
+    margin-top: 0;
+    margin-bottom: 2px;
 }

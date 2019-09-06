@@ -1,13 +1,14 @@
 import {State, Action, StateContext, NgxsOnInit, Selector} from '@ngxs/store';
 import { ChatStateModel } from './state.model.collection';
 import { SetCurrentWorkspace, SetMyWorkSpaces, ClickedAvailable, AddUserToChat,
-     ClearChat, SetGroupChat, SetChatId, SetChannelId, SetWorkspaceId, SetMessage } from '../actions/chat.action';
+     ClearChat, SetGroupChat, SetChatId, SetChannelId, SetWorkspaceId, SetMessages, AddMessage } from '../actions/chat.action';
 import { AquachatAPIService } from '../../../core/services/aquachatAPI.service';
 import { OtherUserModel } from '../../../core/models/OtherUserModel';
 import { StorageHelper } from '../../helpers/storage/storage.helper';
 import { ChatGroupModel } from '../../models/chatGroup.model';
 import { MessageModel } from '../../../core/models/MessageModel';
 import { NotificationMapModel } from '../../models/notificationMap.Model';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 
 
@@ -20,7 +21,7 @@ import { NotificationMapModel } from '../../models/notificationMap.Model';
         available: -1,
         selectedUsers: [],
         currentMessages: [],
-        currentChatId: null,
+        currentChatId: '',
         currentChat: null,
         cachedChatGroups: null,
         currentWorkspaceId: null,
@@ -81,6 +82,7 @@ export class ChatStatusState implements NgxsOnInit {
         }
         return null;
     }
+
 
     @Action(SetCurrentWorkspace)
         setCurrentWorkspace({getState, patchState}: StateContext<ChatStateModel>, {payload}: SetCurrentWorkspace) {
@@ -177,11 +179,90 @@ export class ChatStatusState implements NgxsOnInit {
             });
         }
 
-        @Action(SetMessage)
-        setMessage({getState, patchState}: StateContext<ChatStateModel>, {payload}: SetMessage) {
+        @Action(SetMessages)
+        setMessage({getState, patchState}: StateContext<ChatStateModel>, {payload}: SetMessages) {
             patchState({
-                currentMessage: payload
+                currentMessages: payload
             });
+        }
+
+        @Action(AddMessage)
+        addMessage({getState, patchState}: StateContext<ChatStateModel>, {payload}: AddMessage) {
+            let id;
+            let type = 0;
+            
+            if (payload.WorkspaceId !== null && payload.WorkspaceId !== undefined ) {
+                if (payload.WorkspaceId.length > 0) {
+                    let id = payload.WorkspaceId;
+                    type = 1;
+                }
+             }
+            
+        
+             if (payload.ChatId !== null ) {
+                if (payload.ChatId.length > 0) {
+                    let id = payload.ChatId;
+                    type = 3;
+                }
+             }
+
+             const currentChatId = getState().currentChatId;
+             const currentWorkspaceId = getState().currentWorkspaceId;
+             
+
+             if (type === 1) {
+                 if (currentWorkspaceId !== null) {
+                        if (currentWorkspaceId === id) {
+                            const messageList = new Array<MessageModel>();
+                            if ( getState().currentMessages !== null) {
+                                getState().currentMessages.forEach(mess => {
+                                    messageList.push(mess);
+                                });
+                            }
+                            messageList.push(payload);
+                            patchState({
+                                currentMessages: messageList
+                            });
+                        } else {
+                            let count = getState().notificationMap.totalWorkspace;
+                            count = count + 1;
+                            const map = getState().notificationMap;
+
+                            map.totalWorkspace = count;
+                            patchState({
+                             notificationMap: map
+                         });
+                        }
+                 }
+             }
+
+            
+
+            if (type === 3) {
+                if (currentChatId !== null) {
+                       if (currentChatId  === id) {
+                           const messageList = new Array<MessageModel>();
+                           if ( getState().currentMessages !== null) {
+                               getState().currentMessages.forEach(mess => {
+                                   messageList.push(mess);
+                               });
+                           }
+                           messageList.push(payload);
+                           patchState({
+                            currentMessages: messageList
+                        });
+                       } else {
+                           let count = getState().notificationMap.totalDirect;
+                           count = count + 1;
+                           const map = getState().notificationMap;
+
+                           map.totalDirect = count;
+                           patchState({
+                            notificationMap: map
+                        });
+                       }
+                }
+            }
         }
 
         @Action(SetGroupChat)

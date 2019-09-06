@@ -54,9 +54,14 @@ export class SetCurrentChat {
     constructor(public payload: ChatModel) {}
 }
 
-export class SetMessage {
+export class SetMessages {
     static readonly type = '[Chat] SetMessages';
     constructor(public payload: MessageModel[]) {}
+}
+
+export class AddMessage {
+    static readonly type = '[Chat] AddMessage';
+    constructor(public payload: MessageModel) {}
 }
 
 

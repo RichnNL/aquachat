@@ -16,6 +16,8 @@ import { HeaderItemComponent } from './components/headerItem/headerItem.componen
         ChatToolComponent,
         MessageItemComponent,
         HeaderItemComponent,
+        ChatBoxComponent,
+        ChatSendComponent
     ],
     imports: [
         FormsModule,
@@ -25,6 +27,8 @@ import { HeaderItemComponent } from './components/headerItem/headerItem.componen
         ChatToolComponent,
         MessageItemComponent,
         HeaderItemComponent,
+        ChatBoxComponent,
+        ChatSendComponent
         ],
     providers: [],
     bootstrap: []

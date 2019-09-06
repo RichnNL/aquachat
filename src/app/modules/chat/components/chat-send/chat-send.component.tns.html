@@ -1,0 +1,6 @@
+<FlexboxLayout class="container">
+    <MDTextField #inputField class="input" placeholderColor="blue" maxLength="250" 
+        hint="Enter Message" returnKeyType="next" floating="true"  
+        (textChange)="type(inputField.text)"></MDTextField>
+    <Image (tap)="sendMessage()" src={{sendMobile}} class="img" stretch="aspectFit" > </Image>
+</FlexboxLayout>

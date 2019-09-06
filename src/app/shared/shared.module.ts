@@ -7,13 +7,14 @@ import { StorageHelper } from './helpers/storage/storage.helper';
 import { AquachatAPIService } from '../core/services/aquachatAPI.service';
 import {AuthenticationGuard} from '../core/guards/authentication.guard';
 import {ToastHelper} from './helpers/toast/toast.helper';
-// import {SignalRService} from '../core/services/signalR.service';
+import {SignalRService} from '../core/services/signalR.service';
+
 @NgModule({
     declarations: [],
     imports: [TranslateModule],
     exports: [TranslateModule],
     providers: [AzureService, ToastHelper, DialogHelper, RouterHelper,
-      StorageHelper, AquachatAPIService, AuthenticationGuard]
+      StorageHelper, AquachatAPIService, AuthenticationGuard, SignalRService]
   })
 
   export class SharedModule {

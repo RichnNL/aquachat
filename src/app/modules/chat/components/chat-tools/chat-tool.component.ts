@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { WorkspaceDetailsModel } from '../../../../core/models/WorkspaceDetailsModel';
 import { OtherUserModel } from '../../../../core/models/OtherUserModel';
 import { UserDisplayModel } from '../../../../core/models/UserDisplay.Model';
-
 @Component({
   selector: 'app-chat-tool',
   templateUrl: './chat-tool.component.html',

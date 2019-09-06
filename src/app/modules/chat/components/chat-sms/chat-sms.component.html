@@ -1,6 +1,7 @@
-<div class="chat" [ngClass]="left ? 'left' : 'right'" >
-    <h3 matLine> {{name}} </h3>
-    <p matLine>
-        {{message.Payload}}
-    </p>
+<div class="chat" >
+        <ngx-avatar size="70" fgColor="blue" bgColor="white" class="icon" name={{name}} ></ngx-avatar>
+        <div class="sideChat">
+            <p class="border f"> {{name}} </p>
+            <p class="f"> {{payload}}</p>
+        </div>
 </div>
